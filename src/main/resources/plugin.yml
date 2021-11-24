@@ -1,0 +1,7 @@
+name: Minetopia
+version: '${project.version}'
+main: nl.cheesydevs.minetopia.Minetopia
+authors: [ GameHugo_, patatje ]
+description: De all in one Minetopia plugin
+website: https://cheesydevs.nl
+depend: [ Vault, WorldGuard ]
