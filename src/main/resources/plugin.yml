@@ -5,3 +5,7 @@ authors: [ GameHugo_, patatje ]
 description: De all in one Minetopia plugin
 website: https://cheesydevs.nl
 depend: [ Vault, WorldGuard ]
+commands:
+  minetopia:
+    description: "The main command of the plugin"
+    aliases: [ mt ]
