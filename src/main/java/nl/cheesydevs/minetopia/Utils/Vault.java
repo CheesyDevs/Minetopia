@@ -8,11 +8,13 @@ public class Vault {
 
     private static Economy economy = null; // default is null
 
-    public static void setupEconomy() {
+    public static boolean setupEconomy() {
         RegisteredServiceProvider<Economy> rsp = Minetopia.getInstance().getServer().getServicesManager().getRegistration(Economy.class);
-        if(rsp != null) {
-            economy = rsp.getProvider();
+        if (rsp == null) {
+            return false;
         }
+        economy = rsp.getProvider();
+        return true;
     }
 
     public static Economy getEconomy() {

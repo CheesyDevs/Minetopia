@@ -1,11 +1,14 @@
 name: Minetopia
 version: '${project.version}'
 main: nl.cheesydevs.minetopia.Minetopia
+api-version: 1.16
 authors: [ GameHugo_, patatje ]
 description: De all in one Minetopia plugin
 website: https://cheesydevs.nl
-depend: [ Vault, WorldGuard ]
+softdepend: [ Vault, WorldEdit, WorldGuard ]
 commands:
   minetopia:
     description: "The main command of the plugin"
     aliases: [ mt ]
+  scoreboard:
+    description: "soon..."

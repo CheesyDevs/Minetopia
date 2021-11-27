@@ -1,0 +1,8 @@
+JoinMessage: "&8[&a+&8] <Name>"
+LeaveMessage: "&8[&c-&8] <Name>"
+Scoreboard:
+  - "&cMinetopia"
+  - "&3Money:"
+  - "&b<Money>"
+  - "<emptyLine>"
+  - "&8play.example.com"
