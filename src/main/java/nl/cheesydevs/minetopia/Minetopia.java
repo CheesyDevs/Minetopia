@@ -1,6 +1,7 @@
 package nl.cheesydevs.minetopia;
 
 import nl.cheesydevs.minetopia.Commands.MinetopiaCMD;
+import nl.cheesydevs.minetopia.Commands.MoneyCMD;
 import nl.cheesydevs.minetopia.Commands.ScoreboardCMD;
 import nl.cheesydevs.minetopia.Utils.*;
 import nl.cheesydevs.minetopia.Utils.Files.Config;
@@ -11,14 +12,14 @@ import java.util.Objects;
 public final class Minetopia extends JavaPlugin {
 
     /*
+    TODO: (this update)
+    Fix vault eco with formatter
+    */
+
+    /*
             (PreviousVersion-NewVersion)
-    LAST CHANGES: (V0.0.1-V0.0.2)
-    Changed Minecraft version to 1.16
-    Changed dependency system to softDepend and added a check in onEnable()
-    Added WorldEdit dependency
-    Added JoinLeave Messages
-    Added Config File
-    Added a part of scoreboard system
+    LAST CHANGES: (V0.0.2-V0.0.2)
+    Fixed vault
     */
 
     private static Minetopia instance;
@@ -32,10 +33,17 @@ public final class Minetopia extends JavaPlugin {
             getPluginLoader().disablePlugin(this);
             return;
         }
-        checkDependency();
+        if(!checkDependency()) {
+            getPluginLoader().disablePlugin(this);
+            return;
+        }
         Config.setup();
         VersionManager.setup();
-        Vault.setupEconomy();
+        if(!Vault.setupEconomy()) {
+            getLogger().severe("Vault is not setup correctly");
+            getPluginLoader().disablePlugin(this);
+            return;
+        }
         Chat.setupPlaceholders();
         Scoreboard.setup();
 
@@ -47,28 +55,28 @@ public final class Minetopia extends JavaPlugin {
         // Plugin shutdown logic
     }
 
-    private void checkDependency() {
-        boolean x = false;
+    private boolean checkDependency() {
+        // using x to check all dependency's, then sending all the missing and then disable
+        boolean x = true;
         if (getServer().getPluginManager().getPlugin("Vault") == null) {
             Message.errorDependencyNotFound("Vault");
-            x = true;
+            x = false;
         }
         if (getServer().getPluginManager().getPlugin("WorldEdit") == null) {
             Message.errorDependencyNotFound("WorldEdit");
-            x = true;
+            x = false;
         }
         if (getServer().getPluginManager().getPlugin("WorldGuard") == null) {
             Message.errorDependencyNotFound("WorldGuard");
-            x = true;
+            x = false;
         }
-        if(x) {
-            getPluginLoader().disablePlugin(this);
-        }
+        return x;
     }
 
     private void setupCommands() {
         Objects.requireNonNull(getCommand("minetopia")).setExecutor(new MinetopiaCMD());
         Objects.requireNonNull(getCommand("scoreboard")).setExecutor(new ScoreboardCMD());
+        Objects.requireNonNull(getCommand("money")).setExecutor(new MoneyCMD());
     }
 
     public static Minetopia getInstance() {

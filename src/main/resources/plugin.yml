@@ -7,6 +7,8 @@ description: De all in one Minetopia plugin
 website: https://cheesydevs.nl
 softdepend: [ Vault, WorldEdit, WorldGuard ]
 commands:
+  money:
+    description: "deleting soon..."
   minetopia:
     description: "The main command of the plugin"
     aliases: [ mt ]
