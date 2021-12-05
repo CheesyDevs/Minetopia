@@ -1,7 +1,7 @@
-package nl.cheesydevs.minetopia.Listeners;
+package nl.cheesydevs.minetopia.listeners;
 
-import nl.cheesydevs.minetopia.Utils.Files.Config;
-import nl.cheesydevs.minetopia.Utils.Scoreboard;
+import nl.cheesydevs.minetopia.utils.files.Config;
+import nl.cheesydevs.minetopia.utils.Scoreboard;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;

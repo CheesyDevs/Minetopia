@@ -1,6 +1,6 @@
-package nl.cheesydevs.minetopia.Utils;
+package nl.cheesydevs.minetopia.utils;
 
-import nl.cheesydevs.minetopia.Utils.Files.Config;
+import nl.cheesydevs.minetopia.utils.files.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

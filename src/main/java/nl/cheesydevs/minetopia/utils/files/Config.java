@@ -1,4 +1,4 @@
-package nl.cheesydevs.minetopia.Utils.Files;
+package nl.cheesydevs.minetopia.utils.files;
 
 import nl.cheesydevs.minetopia.Minetopia;
 import org.bukkit.configuration.file.FileConfiguration;

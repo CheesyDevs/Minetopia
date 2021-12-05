@@ -1,18 +1,17 @@
-package nl.cheesydevs.minetopia.Commands;
+package nl.cheesydevs.minetopia.modules.core.commands;
 
-import nl.cheesydevs.minetopia.Utils.Scoreboard;
+import nl.cheesydevs.minetopia.utils.Vault;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class ScoreboardCMD implements CommandExecutor {
+public class MoneyCMD implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (sender instanceof Player) {
+        if(sender instanceof Player) {
             Player p = (Player) sender;
-            Scoreboard.update(p);
-            sender.sendMessage("updated");
+            p.sendMessage("Geld: "+ Vault.getBalanceFormatted(p));
         }
         return false;
     }

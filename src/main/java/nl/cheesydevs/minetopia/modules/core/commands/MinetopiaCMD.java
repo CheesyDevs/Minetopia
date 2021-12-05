@@ -1,14 +1,22 @@
-package nl.cheesydevs.minetopia.Commands;
+package nl.cheesydevs.minetopia.modules.core.commands;
 
 import nl.cheesydevs.minetopia.Minetopia;
-import nl.cheesydevs.minetopia.Utils.Chat;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
+import nl.cheesydevs.minetopia.utils.Chat;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.defaults.BukkitCommand;
 
-public class MinetopiaCMD implements CommandExecutor {
+import java.util.ArrayList;
+
+public class MinetopiaCMD extends BukkitCommand {
+    public MinetopiaCMD(String name) {
+        super(name);
+        this.description = "The main command of the plugin";
+        ArrayList<String> aliases = new ArrayList<>();aliases.add("mt");
+        this.setAliases(aliases);
+    }
+
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean execute(CommandSender sender, String commandLabel, String[] args) {
         if(!sender.hasPermission("minetopia.use")) {
             sender.sendMessage(Chat.color("&6This minetopia plugin is made by &e"+getAuthors()+"\n&6Website: &ehttps://cheesydevs.nl"));
             return true;

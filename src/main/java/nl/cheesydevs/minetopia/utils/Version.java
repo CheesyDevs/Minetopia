@@ -1,4 +1,4 @@
-package nl.cheesydevs.minetopia.Utils;
+package nl.cheesydevs.minetopia.utils;
 
 public enum Version {
     unknown("unknown"),
@@ -10,7 +10,7 @@ public enum Version {
     v1_17("1.17"),
     v1_18("1.18");
 
-    final String version;
+    private final String version;
 
     Version(String version) {
         this.version = version;

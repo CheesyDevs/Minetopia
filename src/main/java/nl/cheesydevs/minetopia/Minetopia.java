@@ -1,18 +1,14 @@
 package nl.cheesydevs.minetopia;
 
-import nl.cheesydevs.minetopia.Commands.MinetopiaCMD;
-import nl.cheesydevs.minetopia.Commands.MoneyCMD;
-import nl.cheesydevs.minetopia.Commands.ScoreboardCMD;
-import nl.cheesydevs.minetopia.Utils.*;
-import nl.cheesydevs.minetopia.Utils.Files.Config;
+import nl.cheesydevs.minetopia.utils.*;
+import nl.cheesydevs.minetopia.utils.files.Config;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.Objects;
 
 public final class Minetopia extends JavaPlugin {
 
     /*
-    TODO: (this update)
+    TODO:
+    Working on multiple version nms
     */
 
     /*
@@ -73,9 +69,7 @@ public final class Minetopia extends JavaPlugin {
     }
 
     private void setupCommands() {
-        Objects.requireNonNull(getCommand("minetopia")).setExecutor(new MinetopiaCMD());
-        Objects.requireNonNull(getCommand("scoreboard")).setExecutor(new ScoreboardCMD());
-        Objects.requireNonNull(getCommand("money")).setExecutor(new MoneyCMD());
+
     }
 
     public static Minetopia getInstance() {
