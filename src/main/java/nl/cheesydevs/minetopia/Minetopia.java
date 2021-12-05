@@ -13,7 +13,6 @@ public final class Minetopia extends JavaPlugin {
 
     /*
     TODO: (this update)
-    Fix vault eco with formatter
     */
 
     /*
@@ -40,7 +39,7 @@ public final class Minetopia extends JavaPlugin {
         Config.setup();
         VersionManager.setup();
         if(!Vault.setupEconomy()) {
-            getLogger().severe("Vault is not setup correctly");
+            getLogger().severe("Vault is not setup correctly. Did you install essentials?");
             getPluginLoader().disablePlugin(this);
             return;
         }

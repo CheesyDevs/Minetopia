@@ -4,7 +4,6 @@ import nl.cheesydevs.minetopia.Minetopia;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.io.File;
-import java.io.IOException;
 
 public class Config {
 
@@ -17,12 +16,8 @@ public class Config {
         config = Minetopia.getInstance().getConfig();
     }
 
-    public static void save() {
-        try {
-            getConfig().save(getFile());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static void reload() {
+        Minetopia.getInstance().reloadConfig();
     }
 
     public static File getFile() {

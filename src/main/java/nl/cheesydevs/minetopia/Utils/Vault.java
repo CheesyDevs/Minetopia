@@ -6,6 +6,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
 import java.text.NumberFormat;
+import java.util.Locale;
 
 public class Vault {
 
@@ -21,8 +22,8 @@ public class Vault {
     }
 
     public static String getBalanceFormatted(OfflinePlayer offlinePlayer) {
-        NumberFormat formatter = NumberFormat.getCurrencyInstance();
-        return formatter.format(getEconomy().getBalance(offlinePlayer));
+        String s = NumberFormat.getCurrencyInstance(Locale.GERMAN).format(getEconomy().getBalance(offlinePlayer));
+        return s.substring(0, s.length()-2);
     }
 
     public static Economy getEconomy() {
