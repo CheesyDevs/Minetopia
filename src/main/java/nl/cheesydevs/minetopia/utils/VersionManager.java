@@ -1,6 +1,7 @@
 package nl.cheesydevs.minetopia.utils;
 
 import nl.cheesydevs.minetopia.Minetopia;
+import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
 
 public class VersionManager {
 
@@ -16,10 +17,8 @@ public class VersionManager {
         Minetopia.getInstance().getLogger().info("Server running on version "+getVersion().toString());
     }
 
-    public static org.bukkit.craftbukkit.v1_12_R1.CraftServer getServer() {
-        if(version.equals(Version.v1_12_2)) return (org.bukkit.craftbukkit.v1_12_R1.CraftServer)Minetopia.getInstance().getServer();
-        if(version.equals(Version.v1_16)) return (org.bukkit.craftbukkit.)
-        return null;
+    public static CraftServer getServer() {
+        return (CraftServer) Minetopia.getInstance().getServer();
     }
 
     public static Version getVersion() {

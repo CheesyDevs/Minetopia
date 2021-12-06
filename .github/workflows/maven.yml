@@ -30,7 +30,7 @@ jobs:
 
       # Builds spigot
       - name: Step 3 - Build spigot
-      - uses: SpraxDev/Action-SpigotMC@v3
+        uses: SpraxDev/Action-SpigotMC@v3
         with:
           versions: 1.12.2, 1.16.5
 
