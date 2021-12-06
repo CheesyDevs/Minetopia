@@ -32,7 +32,7 @@ jobs:
       - name: Step 3 - Build spigot
         uses: SpraxDev/Action-SpigotMC@v3
         with:
-          versions: 1.12.2, 1.16.5
+          versions: 1.16.5
 
       # Builds the maven project
       - name: Step 4 - Build
