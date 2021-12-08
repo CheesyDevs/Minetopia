@@ -6,6 +6,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 
+import javax.annotation.Nonnull;
+
 public class MoneyCMD extends BukkitCommand {
     public MoneyCMD(String name) {
         super(name);
@@ -13,8 +15,8 @@ public class MoneyCMD extends BukkitCommand {
     }
 
     @Override
-    public boolean execute(CommandSender sender, String label, String[] args) {
-        if(SubCommandManager.execute(sender, args, this.getClass(), 1)) {
+    public boolean execute(@Nonnull CommandSender sender, @Nonnull String label, @Nonnull String[] args) {
+        if(SubCommandManager.execute(sender, args, this.getClass(), 0)) {
             return true;
         }
         if(sender instanceof Player) {

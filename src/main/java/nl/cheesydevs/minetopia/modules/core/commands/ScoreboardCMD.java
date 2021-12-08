@@ -5,6 +5,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 
 public class ScoreboardCMD extends BukkitCommand {
@@ -16,7 +17,7 @@ public class ScoreboardCMD extends BukkitCommand {
     }
 
     @Override
-    public boolean execute(CommandSender sender, String s, String[] strings) {
+    public boolean execute(@Nonnull CommandSender sender, @Nonnull String s, @Nonnull String[] strings) {
         if (sender instanceof Player) {
             Player p = (Player) sender;
             Scoreboard.update(p);

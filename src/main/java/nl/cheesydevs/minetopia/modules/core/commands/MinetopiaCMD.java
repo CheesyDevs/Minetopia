@@ -5,6 +5,7 @@ import nl.cheesydevs.minetopia.utils.Chat;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 
 public class MinetopiaCMD extends BukkitCommand {
@@ -16,7 +17,7 @@ public class MinetopiaCMD extends BukkitCommand {
     }
 
     @Override
-    public boolean execute(CommandSender sender, String commandLabel, String[] args) {
+    public boolean execute(@Nonnull CommandSender sender, @Nonnull String commandLabel, @Nonnull String[] args) {
         if(!sender.hasPermission("minetopia.use")) {
             sender.sendMessage(Chat.color("&6This minetopia plugin is made by &e"+getAuthors()+"\n&6Website: &ehttps://cheesydevs.nl"));
             return true;

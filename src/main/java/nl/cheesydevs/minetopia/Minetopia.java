@@ -1,9 +1,13 @@
 package nl.cheesydevs.minetopia;
 
+import nl.cheesydevs.minetopia.events.OnModuleDisableEvent;
+import nl.cheesydevs.minetopia.events.OnModuleEnableEvent;
 import nl.cheesydevs.minetopia.modules.Module;
 import nl.cheesydevs.minetopia.modules.core.CoreModule;
+import nl.cheesydevs.minetopia.modules.gameitems.GameItemsModule;
 import nl.cheesydevs.minetopia.utils.*;
 import nl.cheesydevs.minetopia.utils.files.Config;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
@@ -48,13 +52,17 @@ public final class Minetopia extends JavaPlugin {
         Chat.setupPlaceholders();
         Scoreboard.setup();
 
-        loadModules(new CoreModule());
+        loadModules(new CoreModule(), new GameItemsModule());
     }
 
     public static void loadModule(Module module) {
         if(!modules.contains(module)) {
-            modules.add(module);
-            module.onEnable();
+            OnModuleEnableEvent onModuleEnableEvent = new OnModuleEnableEvent(module);
+            Bukkit.getPluginManager().callEvent(onModuleEnableEvent);
+            if(!onModuleEnableEvent.isCancelled()) {
+                modules.add(module);
+                module.onEnable();
+            }
         } else {
             getInstance().getLogger().severe("Double module... Not enabling ["+module.name()+"]");
         }
@@ -63,6 +71,25 @@ public final class Minetopia extends JavaPlugin {
     public static void loadModules(Module... modules) {
         for (Module module : modules) {
             loadModule(module);
+        }
+    }
+
+    public static void unloadModule(Module module) {
+        if(modules.contains(module)) {
+            OnModuleDisableEvent onModuleDisableEvent = new OnModuleDisableEvent(module);
+            Bukkit.getPluginManager().callEvent(onModuleDisableEvent);
+            if (!onModuleDisableEvent.isCancelled()) {
+                modules.remove(module);
+                module.onDisable();
+            }
+        } else {
+            getInstance().getLogger().severe("Cannot disable module... Not loaded ["+module.name()+"]");
+        }
+    }
+
+    public static void unloadModules(Module... modules) {
+        for (Module module : modules) {
+            unloadModule(module);
         }
     }
 
@@ -89,6 +116,13 @@ public final class Minetopia extends JavaPlugin {
         return x;
     }
 
+    public static String getModulesString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Module module : Minetopia.getModules()) {
+            stringBuilder.append("&f, &a").append(module.name());
+        }
+        return Chat.color("Modules ("+Minetopia.getModules().size()+"): "+stringBuilder.substring(4));
+    }
     public static List<Module> getModules() {
         return modules;
     }

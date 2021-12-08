@@ -17,7 +17,7 @@ public class SubCommandManager {
     }
 
     public static boolean execute(CommandSender sender, String[] args, Class<?> cls, int place) {
-        if (args.length > 0) {
+        if (args.length > place) {
             for (SubCommandExecutor subCommandExecutor : SubCommandManager.getSubCommands().values()) {
                 if (subCommandExecutor.getCommand().equals(cls.toString())) {
                     if (subCommandExecutor.getClass().getAnnotation(SubCommand.class).name().equals(args[place])) {
@@ -30,7 +30,7 @@ public class SubCommandManager {
     }
 
     public static boolean execute(CommandSender sender, String[] args, Class<?> cls, int... place) {
-        if (args.length > 0) {
+        if (args.length > place[0]) {
             for (SubCommandExecutor subCommandExecutor : SubCommandManager.getSubCommands().values()) {
                 if (subCommandExecutor.getCommand().equals(cls.toString())) {
                     for(int i : place) {

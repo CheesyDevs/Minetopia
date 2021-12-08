@@ -3,8 +3,10 @@ package nl.cheesydevs.minetopia.modules.core;
 import nl.cheesydevs.minetopia.Minetopia;
 import nl.cheesydevs.minetopia.modules.Module;
 import nl.cheesydevs.minetopia.modules.core.commands.MinetopiaCMD;
+import nl.cheesydevs.minetopia.modules.core.commands.ModuleCMD;
 import nl.cheesydevs.minetopia.modules.core.commands.MoneyCMD;
 import nl.cheesydevs.minetopia.modules.core.commands.ScoreboardCMD;
+import nl.cheesydevs.minetopia.modules.core.commands.subcommands.ModuleList;
 import nl.cheesydevs.minetopia.modules.core.commands.subcommands.SubTest;
 import nl.cheesydevs.minetopia.modules.core.listeners.OnJoinQuit;
 import nl.cheesydevs.minetopia.utils.VersionManager;
@@ -32,6 +34,8 @@ public class CoreModule implements Module {
         VersionManager.getServer().getCommandMap().register("scoreboard", new ScoreboardCMD("scoreboard"));
         VersionManager.getServer().getCommandMap().register("money", new MoneyCMD("money"));
         SubCommandManager.addSubCommand(MoneyCMD.class.toString(), new SubTest());
+        VersionManager.getServer().getCommandMap().register("module", new ModuleCMD("module"));
+        SubCommandManager.addSubCommand(ModuleCMD.class.toString(), new ModuleList());
         Minetopia.getInstance().getServer().getPluginManager().registerEvents(new OnJoinQuit(), Minetopia.getInstance());
     }
 }
