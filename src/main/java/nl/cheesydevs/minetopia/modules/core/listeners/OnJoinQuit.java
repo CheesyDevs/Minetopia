@@ -1,4 +1,4 @@
-package nl.cheesydevs.minetopia.listeners;
+package nl.cheesydevs.minetopia.modules.core.listeners;
 
 import nl.cheesydevs.minetopia.utils.files.Config;
 import nl.cheesydevs.minetopia.utils.Scoreboard;

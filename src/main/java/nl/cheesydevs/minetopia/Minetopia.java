@@ -49,8 +49,6 @@ public final class Minetopia extends JavaPlugin {
         Scoreboard.setup();
 
         loadModules(new CoreModule());
-
-        setupCommands();
     }
 
     public static void loadModule(Module module) {
@@ -89,10 +87,6 @@ public final class Minetopia extends JavaPlugin {
             x = false;
         }
         return x;
-    }
-
-    private void setupCommands() {
-
     }
 
     public static List<Module> getModules() {
