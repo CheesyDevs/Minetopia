@@ -8,6 +8,5 @@ public @interface SubCommand {
     String name();
     String description();
     String usage();
-    int argsLength() default 1;
 }
 

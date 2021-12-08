@@ -5,7 +5,7 @@ import nl.cheesydevs.minetopia.utils.interfaces.SubCommand;
 import nl.cheesydevs.minetopia.utils.interfaces.SubCommandExecutor;
 import org.bukkit.command.CommandSender;
 
-@SubCommand(name = "test", description = "testing", usage = "test", argsLength = 1)
+@SubCommand(name = "test", description = "testing", usage = "test")
 public class SubTest implements SubCommandExecutor {
 
     @Override
@@ -16,6 +16,6 @@ public class SubTest implements SubCommandExecutor {
     @Override
     public boolean execute(CommandSender sender, String[] args) {
         sender.sendMessage("werkt");
-        return false;
+        return true;
     }
 }

@@ -1,5 +1,7 @@
 package nl.cheesydevs.minetopia.utils.interfaces;
 
+import org.bukkit.command.CommandSender;
+
 import java.util.HashMap;
 
 public class SubCommandManager {
@@ -12,6 +14,34 @@ public class SubCommandManager {
         } else {
             throw new IllegalArgumentException("Given executor has no SubCommand annotation.");
         }
+    }
+
+    public static boolean execute(CommandSender sender, String[] args, Class<?> cls, int place) {
+        if (args.length > 0) {
+            for (SubCommandExecutor subCommandExecutor : SubCommandManager.getSubCommands().values()) {
+                if (subCommandExecutor.getCommand().equals(cls.toString())) {
+                    if (subCommandExecutor.getClass().getAnnotation(SubCommand.class).name().equals(args[place])) {
+                        return subCommandExecutor.execute(sender, args);
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean execute(CommandSender sender, String[] args, Class<?> cls, int... place) {
+        if (args.length > 0) {
+            for (SubCommandExecutor subCommandExecutor : SubCommandManager.getSubCommands().values()) {
+                if (subCommandExecutor.getCommand().equals(cls.toString())) {
+                    for(int i : place) {
+                        if (subCommandExecutor.getClass().getAnnotation(SubCommand.class).name().equals(args[i])) {
+                            return subCommandExecutor.execute(sender, args);
+                        }
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public static HashMap<String, SubCommandExecutor> getSubCommands() {
