@@ -1,19 +1,27 @@
 package nl.cheesydevs.minetopia.modules.core.commands;
 
 import nl.cheesydevs.minetopia.utils.Scoreboard;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 
-public class ScoreboardCMD implements CommandExecutor {
+import java.util.ArrayList;
+
+public class ScoreboardCMD extends BukkitCommand {
+    public ScoreboardCMD(String name) {
+        super(name);
+        this.description = "Toggle the scoreboard";
+        ArrayList<String> aliases = new ArrayList<>();aliases.add("sb");
+        this.setAliases(aliases);
+    }
+
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean execute(CommandSender sender, String s, String[] strings) {
         if (sender instanceof Player) {
             Player p = (Player) sender;
             Scoreboard.update(p);
             sender.sendMessage("updated");
         }
-        return false;
+        return true;
     }
 }

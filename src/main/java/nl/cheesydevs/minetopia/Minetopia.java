@@ -1,8 +1,13 @@
 package nl.cheesydevs.minetopia;
 
+import nl.cheesydevs.minetopia.modules.Module;
+import nl.cheesydevs.minetopia.modules.core.CoreModule;
 import nl.cheesydevs.minetopia.utils.*;
 import nl.cheesydevs.minetopia.utils.files.Config;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public final class Minetopia extends JavaPlugin {
 
@@ -18,6 +23,7 @@ public final class Minetopia extends JavaPlugin {
     */
 
     private static Minetopia instance;
+    private static final List<Module> modules = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -42,7 +48,24 @@ public final class Minetopia extends JavaPlugin {
         Chat.setupPlaceholders();
         Scoreboard.setup();
 
+        loadModules(new CoreModule());
+
         setupCommands();
+    }
+
+    public static void loadModule(Module module) {
+        if(!modules.contains(module)) {
+            modules.add(module);
+            module.onEnable();
+        } else {
+            getInstance().getLogger().severe("Double module... Not enabling ["+module.name()+"]");
+        }
+    }
+
+    public static void loadModules(Module... modules) {
+        for (Module module : modules) {
+            loadModule(module);
+        }
     }
 
     @Override
@@ -72,6 +95,9 @@ public final class Minetopia extends JavaPlugin {
 
     }
 
+    public static List<Module> getModules() {
+        return modules;
+    }
     public static Minetopia getInstance() {
         return instance;
     }
