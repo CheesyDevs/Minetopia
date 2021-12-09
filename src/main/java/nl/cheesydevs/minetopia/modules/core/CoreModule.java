@@ -9,7 +9,7 @@ import nl.cheesydevs.minetopia.modules.core.commands.ScoreboardCMD;
 import nl.cheesydevs.minetopia.modules.core.commands.subcommands.ModuleList;
 import nl.cheesydevs.minetopia.modules.core.commands.subcommands.SubTest;
 import nl.cheesydevs.minetopia.modules.core.listeners.OnJoinQuit;
-import nl.cheesydevs.minetopia.utils.VersionManager;
+import nl.cheesydevs.minetopia.utils.command.CommandManager;
 import nl.cheesydevs.minetopia.utils.interfaces.SubCommandManager;
 
 public class CoreModule implements Module {
@@ -30,11 +30,11 @@ public class CoreModule implements Module {
     }
 
     private void registerCommands() {
-        VersionManager.getServer().getCommandMap().register("minetopia", new MinetopiaCMD("minetopia"));
-        VersionManager.getServer().getCommandMap().register("scoreboard", new ScoreboardCMD("scoreboard"));
-        VersionManager.getServer().getCommandMap().register("money", new MoneyCMD("money"));
+        CommandManager.register(new MinetopiaCMD("minetopia"));
+        CommandManager.register(new ScoreboardCMD("scoreboard"));
+        CommandManager.register(new MoneyCMD("money"));
         SubCommandManager.addSubCommand(MoneyCMD.class.toString(), new SubTest());
-        VersionManager.getServer().getCommandMap().register("module", new ModuleCMD("module"));
+        CommandManager.register(new ModuleCMD("module"));
         SubCommandManager.addSubCommand(ModuleCMD.class.toString(), new ModuleList());
         Minetopia.getInstance().getServer().getPluginManager().registerEvents(new OnJoinQuit(), Minetopia.getInstance());
     }
