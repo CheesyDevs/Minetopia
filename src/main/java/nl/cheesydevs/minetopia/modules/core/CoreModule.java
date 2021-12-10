@@ -5,10 +5,10 @@ import nl.cheesydevs.minetopia.modules.Module;
 import nl.cheesydevs.minetopia.modules.core.commands.MinetopiaCMD;
 import nl.cheesydevs.minetopia.modules.core.commands.ModuleCMD;
 import nl.cheesydevs.minetopia.modules.core.commands.MoneyCMD;
-import nl.cheesydevs.minetopia.modules.core.commands.ScoreboardCMD;
 import nl.cheesydevs.minetopia.modules.core.commands.subcommands.ModuleList;
 import nl.cheesydevs.minetopia.modules.core.commands.subcommands.SubTest;
 import nl.cheesydevs.minetopia.modules.core.listeners.OnJoinQuit;
+import nl.cheesydevs.minetopia.utils.files.Config;
 import nl.cheesydevs.minetopia.utils.version.command.Command;
 import nl.cheesydevs.minetopia.utils.interfaces.SubCommandManager;
 
@@ -21,6 +21,7 @@ public class CoreModule implements Module {
 
     @Override
     public void onEnable() {
+        Config.setup();
         registerCommands();
     }
 
@@ -31,7 +32,6 @@ public class CoreModule implements Module {
 
     private void registerCommands() {
         Command.register(new MinetopiaCMD("minetopia"));
-        Command.register(new ScoreboardCMD("scoreboard"));
         Command.register(new MoneyCMD("money"));
         SubCommandManager.addSubCommand(MoneyCMD.class.toString(), new SubTest());
         Command.register(new ModuleCMD("module"));

@@ -1,12 +1,15 @@
-package nl.cheesydevs.minetopia.modules.core.commands;
+package nl.cheesydevs.minetopia.modules.scoreboard.commands;
 
-import nl.cheesydevs.minetopia.utils.Scoreboard;
+import nl.cheesydevs.minetopia.modules.scoreboard.utils.Scoreboard;
+import nl.cheesydevs.minetopia.utils.Chat;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ScoreboardCMD extends BukkitCommand {
     public ScoreboardCMD(String name) {
@@ -20,8 +23,14 @@ public class ScoreboardCMD extends BukkitCommand {
     public boolean execute(@Nonnull CommandSender sender, @Nonnull String s, @Nonnull String[] strings) {
         if (sender instanceof Player) {
             Player p = (Player) sender;
-            Scoreboard.update(p);
-            sender.sendMessage("updated");
+            if(Scoreboard.getEnabled().contains(p)) {
+                Scoreboard.remove(p);
+                p.sendMessage(Chat.color("&aJe hebt je scoreboard uit gezet!"));
+                p.setScoreboard(Objects.requireNonNull(Bukkit.getScoreboardManager()).getNewScoreboard());
+            } else {
+                Scoreboard.add(p);
+                p.sendMessage(Chat.color("&aJe hebt je scoreboard aan gezet!"));
+            }
         }
         return true;
     }

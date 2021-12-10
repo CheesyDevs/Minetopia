@@ -1,5 +1,6 @@
-package nl.cheesydevs.minetopia.utils;
+package nl.cheesydevs.minetopia.modules.scoreboard.utils;
 
+import nl.cheesydevs.minetopia.utils.Chat;
 import nl.cheesydevs.minetopia.utils.files.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -35,17 +36,23 @@ public class Scoreboard {
     public static void update(Player p) {
         List<String> scoreboardList = Config.getConfig().getStringList("Scoreboard");
         if(scoreboardList.isEmpty()) return;
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < scoreboardList.size(); i++) {
             if(i == 0) continue;
             Team team = getScoreboard().getTeam("mt"+i);
             if(team==null) return;
-            team.setPrefix(Chat.color(Chat.placeholders(scoreboardList.get(i))));
+            if (scoreboardList.get(i).equals("<EmptyLine>")) {
+                team.setPrefix(stringBuilder.append(" ").toString());
+            } else {
+                team.setPrefix(Chat.color(Chat.placeholders(scoreboardList.get(i), p)));
+            }
         }
         p.setScoreboard(getScoreboard());
     }
 
     public static void update() {
         for (Player p : Bukkit.getOnlinePlayers()) {
+            if(!enabled.contains(p)) return;
             update(p);
         }
     }
@@ -63,6 +70,9 @@ public class Scoreboard {
         return colors.get(i).toString();
     }
 
+    public static List<Player> getEnabled() {
+        return enabled;
+    }
     public static org.bukkit.scoreboard.Scoreboard getScoreboard() {
         return scoreboard;
     }

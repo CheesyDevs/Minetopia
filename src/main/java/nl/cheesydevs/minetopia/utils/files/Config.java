@@ -12,7 +12,8 @@ public class Config {
 
     public static void setup() {
         file = new File(Minetopia.getInstance().getDataFolder(), "config.yml");
-        Minetopia.getInstance().saveDefaultConfig();
+        Minetopia.getInstance().getConfig().options().copyDefaults(true);
+        Minetopia.getInstance().saveConfig();
         config = Minetopia.getInstance().getConfig();
     }
 

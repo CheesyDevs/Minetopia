@@ -1,8 +1,11 @@
-JoinMessage: "&8[&a+&8] &7<Name>"
-LeaveMessage: "&8[&c-&8] &7<Name>"
+Debug: true
+LagReducer: false
+JoinMessage: '&8[&a+&8] &7<Name>'
+LeaveMessage: '&8[&c-&8] &7<Name>'
 Scoreboard:
-  - "&cMinetopia"
-  - "&3Money:"
-  - "&b<Money>"
-  - "<emptyLine>"
-  - "&8play.example.com"
+  - '&cMinetopia'
+  - <EmptyLine>
+  - '&3Money:'
+  - '&b<Money>'
+  - <EmptyLine>
+  - '&8play.example.com'

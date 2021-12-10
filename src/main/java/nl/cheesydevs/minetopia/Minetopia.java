@@ -5,6 +5,7 @@ import nl.cheesydevs.minetopia.events.OnModuleEnableEvent;
 import nl.cheesydevs.minetopia.modules.Module;
 import nl.cheesydevs.minetopia.modules.core.CoreModule;
 import nl.cheesydevs.minetopia.modules.gameitems.GameItemsModule;
+import nl.cheesydevs.minetopia.modules.scoreboard.ScoreBoardModule;
 import nl.cheesydevs.minetopia.utils.*;
 import nl.cheesydevs.minetopia.utils.files.Config;
 import nl.cheesydevs.minetopia.utils.files.GameItemsFile;
@@ -47,18 +48,12 @@ public final class Minetopia extends JavaPlugin {
             return;
         }
 
-        // Files
-        Config.setup();
-        GameItemsFile.setup();
-
         // extra's
         VersionManager.setup();
-        Chat.setupPlaceholders();
-        Scoreboard.setup();
         new Metrics(this, 13543);
 
         // Modules
-        loadModules(new CoreModule(), new GameItemsModule());
+        loadModules(new CoreModule(), new GameItemsModule(), new ScoreBoardModule());
     }
 
     public static void loadModule(Module module) {

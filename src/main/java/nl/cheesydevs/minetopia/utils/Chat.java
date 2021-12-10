@@ -1,28 +1,33 @@
 package nl.cheesydevs.minetopia.utils;
 
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Chat {
-    private static final HashMap<String, String> placeholders = new HashMap<>();
-
-    public static void setupPlaceholders() {
-        placeholders.put("<emptyLine>", " ");
-    }
+    private static final HashMap<Player, List<Placeholder>> placeholdersPlayers = new HashMap<>();
 
     public static String color(String s) {
         return ChatColor.translateAlternateColorCodes('&', s);
     }
 
-    public static String placeholders(String s) {
-        for (String holder : getPlaceholders().keySet()) {
-            s = s.replace(holder, getPlaceholders().get(holder));
+    public static String placeholders(String s, Player player) {
+        refreshPlayerPlaceholders(player);
+        for (Placeholder placeholder : placeholdersPlayers.get(player)) {
+            s = s.replace(placeholder.getPlaceholder(), placeholder.getReplacement());
         }
         return s;
     }
 
-    public static HashMap<String, String> getPlaceholders() {
-        return placeholders;
+    public static void refreshPlayerPlaceholders(Player player) {
+        placeholdersPlayers.remove(player); // just to be safe
+        List<Placeholder> placeholderList = new ArrayList<>();
+        placeholderList.add(new Placeholder("<Money>", Vault.getBalanceFormatted(player)));      // Money with vault
+        placeholderList.add(new Placeholder("<Player>", player.getDisplayName()));               // Display name
+        placeholderList.add(new Placeholder("<Name>", player.getName()));                        // Name
+        placeholdersPlayers.put(player, placeholderList);
     }
 }
