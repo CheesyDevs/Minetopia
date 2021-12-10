@@ -1,14 +1,12 @@
 package nl.cheesydevs.minetopia;
 
-import nl.cheesydevs.minetopia.events.OnModuleDisableEvent;
-import nl.cheesydevs.minetopia.events.OnModuleEnableEvent;
+import nl.cheesydevs.minetopia.api.events.OnModuleDisableEvent;
+import nl.cheesydevs.minetopia.api.events.OnModuleEnableEvent;
 import nl.cheesydevs.minetopia.modules.Module;
 import nl.cheesydevs.minetopia.modules.core.CoreModule;
 import nl.cheesydevs.minetopia.modules.gameitems.GameItemsModule;
 import nl.cheesydevs.minetopia.modules.scoreboard.ScoreBoardModule;
 import nl.cheesydevs.minetopia.utils.*;
-import nl.cheesydevs.minetopia.utils.files.Config;
-import nl.cheesydevs.minetopia.utils.files.GameItemsFile;
 import nl.cheesydevs.minetopia.utils.version.VersionManager;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;

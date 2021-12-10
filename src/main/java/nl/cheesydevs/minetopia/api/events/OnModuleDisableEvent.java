@@ -1,4 +1,4 @@
-package nl.cheesydevs.minetopia.events;
+package nl.cheesydevs.minetopia.api.events;
 
 import nl.cheesydevs.minetopia.modules.Module;
 import org.bukkit.event.Cancellable;

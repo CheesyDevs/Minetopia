@@ -9,6 +9,7 @@ import nl.cheesydevs.minetopia.modules.core.commands.subcommands.ModuleList;
 import nl.cheesydevs.minetopia.modules.core.commands.subcommands.SubTest;
 import nl.cheesydevs.minetopia.modules.core.listeners.OnJoinQuit;
 import nl.cheesydevs.minetopia.utils.files.Config;
+import nl.cheesydevs.minetopia.utils.files.PlayerDataFiles;
 import nl.cheesydevs.minetopia.utils.version.command.Command;
 import nl.cheesydevs.minetopia.utils.interfaces.SubCommandManager;
 
@@ -22,6 +23,7 @@ public class CoreModule implements Module {
     @Override
     public void onEnable() {
         Config.setup();
+        PlayerDataFiles.setup();
         registerCommands();
     }
 

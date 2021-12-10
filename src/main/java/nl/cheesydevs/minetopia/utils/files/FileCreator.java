@@ -10,13 +10,32 @@ import java.io.IOException;
 
 public class FileCreator {
 
-    public static File createFile(String fileName) {
-        File file = new File(Minetopia.getInstance().getDataFolder(), fileName);
+    public static File createFile(String filename) {
+        File file = new File(Minetopia.getInstance().getDataFolder(), filename);
         if(!file.exists()) {
-            if(Minetopia.getInstance().getResource(fileName) != null) {
-                Minetopia.getInstance().saveResource(fileName, false);
+            if(Minetopia.getInstance().getResource(filename) != null) {
+                Minetopia.getInstance().saveResource(filename, false);
             } else {
-                if(file.mkdirs()) return file;
+                try {
+                    if(file.createNewFile()) return file;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return file;
+    }
+    public static File createFile(String path, String filename) {
+        File folder = new File(Minetopia.getInstance().getDataFolder()+path);
+        File file = new File(folder, filename);
+        if(!folder.exists()) {
+            folder.mkdirs();
+        }
+        if(!file.exists()) {
+            try {
+                if(file.createNewFile()) return file;
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
         return file;
