@@ -28,11 +28,10 @@ jobs:
           distribution: 'adopt'
           cache: maven
 
-      # Builds spigot
-      - name: Step 3 - Build spigot
-        uses: SpraxDev/Action-SpigotMC@v3
-        with:
-          versions: 1.16.5
+      - name: test
+        run: |
+          sudo apt-get install tree
+          tree
 
       # Builds the maven project
       - name: Step 4 - Build
