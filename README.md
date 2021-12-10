@@ -3,6 +3,10 @@
 # 🌍Minetopia🚗
 De all in one minetopia plugin
 
+![License](https://img.shields.io/github/license/CheesyDevs/Minetopia)
+![Lines](https://img.shields.io/tokei/lines/github/CheesyDevs/Minetopia)
+![Servers](https://img.shields.io/bstats/servers/13543?color=%233ab800)
+
 ## ⚠️Warning
 **Deze plugin is ver van klaar**, we raden je af om dit te gebruiken! Je mag wel ons helpen met "Pull requests".
 

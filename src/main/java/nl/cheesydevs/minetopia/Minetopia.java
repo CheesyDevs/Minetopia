@@ -9,6 +9,7 @@ import nl.cheesydevs.minetopia.utils.*;
 import nl.cheesydevs.minetopia.utils.files.Config;
 import nl.cheesydevs.minetopia.utils.files.GameItemsFile;
 import nl.cheesydevs.minetopia.utils.version.VersionManager;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -54,6 +55,7 @@ public final class Minetopia extends JavaPlugin {
         VersionManager.setup();
         Chat.setupPlaceholders();
         Scoreboard.setup();
+        new Metrics(this, 13543);
 
         // Modules
         loadModules(new CoreModule(), new GameItemsModule());
