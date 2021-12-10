@@ -9,7 +9,7 @@ import nl.cheesydevs.minetopia.modules.core.commands.ScoreboardCMD;
 import nl.cheesydevs.minetopia.modules.core.commands.subcommands.ModuleList;
 import nl.cheesydevs.minetopia.modules.core.commands.subcommands.SubTest;
 import nl.cheesydevs.minetopia.modules.core.listeners.OnJoinQuit;
-import nl.cheesydevs.minetopia.utils.command.CommandManager;
+import nl.cheesydevs.minetopia.utils.version.command.Command;
 import nl.cheesydevs.minetopia.utils.interfaces.SubCommandManager;
 
 public class CoreModule implements Module {
@@ -30,11 +30,11 @@ public class CoreModule implements Module {
     }
 
     private void registerCommands() {
-        CommandManager.register(new MinetopiaCMD("minetopia"));
-        CommandManager.register(new ScoreboardCMD("scoreboard"));
-        CommandManager.register(new MoneyCMD("money"));
+        Command.register(new MinetopiaCMD("minetopia"));
+        Command.register(new ScoreboardCMD("scoreboard"));
+        Command.register(new MoneyCMD("money"));
         SubCommandManager.addSubCommand(MoneyCMD.class.toString(), new SubTest());
-        CommandManager.register(new ModuleCMD("module"));
+        Command.register(new ModuleCMD("module"));
         SubCommandManager.addSubCommand(ModuleCMD.class.toString(), new ModuleList());
         Minetopia.getInstance().getServer().getPluginManager().registerEvents(new OnJoinQuit(), Minetopia.getInstance());
     }

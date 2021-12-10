@@ -1,10 +1,10 @@
-package nl.cheesydevs.minetopia.utils.command;
+package nl.cheesydevs.minetopia.utils.version.command;
 
-import nl.cheesydevs.minetopia.utils.Version;
-import nl.cheesydevs.minetopia.utils.VersionManager;
+import nl.cheesydevs.minetopia.utils.version.Version;
+import nl.cheesydevs.minetopia.utils.version.VersionManager;
 import org.bukkit.command.defaults.BukkitCommand;
 
-public class CommandManager {
+public class Command {
 
     public static void register(BukkitCommand cmd) {
         if(VersionManager.getVersion().equals(Version.v1_12_2)) {Command1_12_2.register(cmd);}

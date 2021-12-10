@@ -7,6 +7,8 @@ import nl.cheesydevs.minetopia.modules.core.CoreModule;
 import nl.cheesydevs.minetopia.modules.gameitems.GameItemsModule;
 import nl.cheesydevs.minetopia.utils.*;
 import nl.cheesydevs.minetopia.utils.files.Config;
+import nl.cheesydevs.minetopia.utils.files.GameItemsFile;
+import nl.cheesydevs.minetopia.utils.version.VersionManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -16,14 +18,9 @@ import java.util.List;
 public final class Minetopia extends JavaPlugin {
 
     /*
-    TODO:
-    Working on multiple version nms
-    */
-
-    /*
             (PreviousVersion-NewVersion)
-    LAST CHANGES: (V0.0.2-V0.0.2)
-    Fixed vault
+    LAST CHANGES: (V0.0.2-V0.0.4)
+    Added too much lol...
     */
 
     private static Minetopia instance;
@@ -38,20 +35,27 @@ public final class Minetopia extends JavaPlugin {
             getPluginLoader().disablePlugin(this);
             return;
         }
+        // Checking Dependency's
         if(!checkDependency()) {
             getPluginLoader().disablePlugin(this);
             return;
         }
-        Config.setup();
-        VersionManager.setup();
         if(!Vault.setupEconomy()) {
             getLogger().severe("Vault is not setup correctly. Did you install essentials?");
             getPluginLoader().disablePlugin(this);
             return;
         }
+
+        // Files
+        Config.setup();
+        GameItemsFile.setup();
+
+        // extra's
+        VersionManager.setup();
         Chat.setupPlaceholders();
         Scoreboard.setup();
 
+        // Modules
         loadModules(new CoreModule(), new GameItemsModule());
     }
 

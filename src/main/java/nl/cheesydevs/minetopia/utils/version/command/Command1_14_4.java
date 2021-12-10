@@ -1,4 +1,4 @@
-package nl.cheesydevs.minetopia.utils.command;
+package nl.cheesydevs.minetopia.utils.version.command;
 
 import nl.cheesydevs.minetopia.Minetopia;
 import org.bukkit.command.defaults.BukkitCommand;

@@ -1,0 +1,5 @@
+test:
+  DisplayName: "&cVoorbeeld"
+  Item: APPLEs
+  NBTTag: skyrex:apple
+  Category: christmas

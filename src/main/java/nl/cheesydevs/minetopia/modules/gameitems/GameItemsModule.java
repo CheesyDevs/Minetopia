@@ -2,7 +2,7 @@ package nl.cheesydevs.minetopia.modules.gameitems;
 
 import nl.cheesydevs.minetopia.modules.Module;
 import nl.cheesydevs.minetopia.modules.gameitems.commands.GameItemsCMD;
-import nl.cheesydevs.minetopia.utils.command.CommandManager;
+import nl.cheesydevs.minetopia.utils.version.command.Command;
 
 @SuppressWarnings("SpellCheckingInspection")
 public class GameItemsModule implements Module {
@@ -23,6 +23,6 @@ public class GameItemsModule implements Module {
     }
 
     private void registerCommands() {
-        CommandManager.register(new GameItemsCMD("gameitems"));
+        Command.register(new GameItemsCMD("gameitems"));
     }
 }

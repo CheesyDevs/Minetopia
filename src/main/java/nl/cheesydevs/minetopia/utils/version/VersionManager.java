@@ -1,4 +1,4 @@
-package nl.cheesydevs.minetopia.utils;
+package nl.cheesydevs.minetopia.utils.version;
 
 import nl.cheesydevs.minetopia.Minetopia;
 

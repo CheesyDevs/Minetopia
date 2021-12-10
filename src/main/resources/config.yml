@@ -1,5 +1,5 @@
-JoinMessage: "&8[&a+&8] <Name>"
-LeaveMessage: "&8[&c-&8] <Name>"
+JoinMessage: "&8[&a+&8] &7<Name>"
+LeaveMessage: "&8[&c-&8] &7<Name>"
 Scoreboard:
   - "&cMinetopia"
   - "&3Money:"

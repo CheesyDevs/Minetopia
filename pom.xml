@@ -6,7 +6,7 @@
 
     <groupId>nl.cheesydevs</groupId>
     <artifactId>Minetopia</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.4</version>
     <packaging>jar</packaging>
 
     <name>Minetopia</name>
