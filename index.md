@@ -6,6 +6,6 @@ De all in one minetopia plugin
 
 | Version  | Tested             | 
 |----------|--------------------|
-| 1.17 >   | :x:                |
-| 1.16.5   | :white_check_mark: |
-| < 1.16.4 | :x:                |
+| 1.17 >   | ❌                 |
+| 1.16.5   | ✅                 |
+| < 1.16.4 | ❌                 |
