@@ -28,14 +28,19 @@ jobs:
           distribution: 'adopt'
           cache: maven
 
+      # Builds spigot
+      - name: Step 3 - Build spigot
+        uses: SpraxDev/Action-SpigotMC@v3
+        with:
+          versions: 1.16.5
+
       # Builds the maven project
-      - name: Step 3 - Build
+      - name: Step 4 - Build
         run: |
           mvn -B package --file pom.xml
           mkdir staging && cp target/*.jar staging
-
       # Cache the dependencies for faster build time
-      - name: Step 4 - Cache dependencies
+      - name: Step 5 - Cache dependencies
         uses: actions/cache@v2
         with:
           path: ~/.m2
