@@ -1,5 +1,6 @@
 package nl.cheesydevs.minetopia;
 
+import nl.cheesydevs.minetopia.api.API;
 import nl.cheesydevs.minetopia.api.events.OnModuleDisableEvent;
 import nl.cheesydevs.minetopia.api.events.OnModuleEnableEvent;
 import nl.cheesydevs.minetopia.modules.Module;
@@ -19,10 +20,15 @@ public final class Minetopia extends JavaPlugin {
 
     /*
             (PreviousVersion-NewVersion)
-    LAST CHANGES: (V0.0.2-V0.0.4)
-    Added too much lol...
+    LAST CHANGES: (V0.0.4-V0.0.5)
+    Added api class
+    Added PlayerData
+    Added new placeholders for new PlayerData
+    Added job class but isn't in use
+    Fixed reloading modules
+    Changed CommandSystem to now use the plugin name as fallback
     */
-
+    private static API api;
     private static Minetopia instance;
     private static final List<Module> modules = new ArrayList<>();
 
@@ -48,6 +54,8 @@ public final class Minetopia extends JavaPlugin {
 
         // extra's
         VersionManager.setup();
+        api = new API();
+        API.setup();
         new Metrics(this, 13543);
 
         // Modules
@@ -92,6 +100,29 @@ public final class Minetopia extends JavaPlugin {
         }
     }
 
+    public static void reloadModule(Module module) {
+        if(modules.contains(module)) {
+            OnModuleDisableEvent onModuleDisableEvent = new OnModuleDisableEvent(module);
+            Bukkit.getPluginManager().callEvent(onModuleDisableEvent);
+            if (!onModuleDisableEvent.isCancelled()) {
+                module.onDisable();
+            }
+        } else {
+            getInstance().getLogger().severe("Cannot disable module... Not loaded ["+module.name()+"]");
+        }
+        OnModuleEnableEvent onModuleEnableEvent = new OnModuleEnableEvent(module);
+        Bukkit.getPluginManager().callEvent(onModuleEnableEvent);
+        if(!onModuleEnableEvent.isCancelled()) {
+            module.onEnable();
+        }
+    }
+
+    public static void reloadModules(Module... modules) {
+        for (Module module : modules) {
+            reloadModule(module);
+        }
+    }
+
     @Override
     public void onDisable() {
         // Plugin shutdown logic
@@ -115,6 +146,9 @@ public final class Minetopia extends JavaPlugin {
         return x;
     }
 
+    public static API getApi() {
+        return api;
+    }
     public static String getModulesString() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Module module : Minetopia.getModules()) {

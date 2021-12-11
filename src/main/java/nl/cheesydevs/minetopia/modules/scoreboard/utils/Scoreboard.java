@@ -63,6 +63,7 @@ public class Scoreboard {
 
     public static void remove(Player p) {
         enabled.remove(p);
+        p.setScoreboard(Objects.requireNonNull(Bukkit.getScoreboardManager()).getNewScoreboard());
     }
 
     public static String empty(int i) {

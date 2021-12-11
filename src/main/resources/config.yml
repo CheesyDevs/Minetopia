@@ -5,6 +5,12 @@ LeaveMessage: '&8[&c-&8] &7<Name>'
 Scoreboard:
   - '&cMinetopia'
   - <EmptyLine>
+  - '&3Level:'
+  - '&b<Level>'
+  - <EmptyLine>
+  - '&3Fitheid:'
+  - '&b<Fitheid>'
+  - <EmptyLine>
   - '&3Money:'
   - '&b<Money>'
   - <EmptyLine>

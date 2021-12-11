@@ -4,7 +4,7 @@
 De all in one minetopia plugin
 
 [![License](https://img.shields.io/github/license/CheesyDevs/Minetopia)](https://github.com/CheesyDevs/Minetopia/blob/main/LICENSE)
-[![Lines](https://img.shields.io/tokei/lines/github/CheesyDevs/Minetopia)]()
+[![Lines](https://img.shields.io/tokei/lines/github/CheesyDevs/Minetopia)](https://github.com/CheesyDevs/Minetopia)
 [![Servers](https://img.shields.io/bstats/servers/13543?color=%233ab800)](https://bstats.org/plugin/bukkit/Minetopia/13543)
 [![Build and Code analyzer](https://github.com/CheesyDevs/Minetopia/actions/workflows/workflow.yml/badge.svg)](https://github.com/CheesyDevs/Minetopia/actions/workflows/workflow.yml)
 ## ⚠️Warning

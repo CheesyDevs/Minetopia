@@ -8,7 +8,7 @@ public class Command1_16_5 {
 
     public static void register(BukkitCommand cmd) {
         CraftServer craftServer = (CraftServer) Minetopia.getInstance().getServer();
-        craftServer.getCommandMap().register(cmd.getName(), cmd);
+        craftServer.getCommandMap().register(Minetopia.getInstance().getName(), cmd);
     }
 
 }

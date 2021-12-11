@@ -26,7 +26,6 @@ public class ScoreboardCMD extends BukkitCommand {
             if(Scoreboard.getEnabled().contains(p)) {
                 Scoreboard.remove(p);
                 p.sendMessage(Chat.color("&aJe hebt je scoreboard uit gezet!"));
-                p.setScoreboard(Objects.requireNonNull(Bukkit.getScoreboardManager()).getNewScoreboard());
             } else {
                 Scoreboard.add(p);
                 p.sendMessage(Chat.color("&aJe hebt je scoreboard aan gezet!"));

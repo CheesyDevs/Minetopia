@@ -6,7 +6,6 @@ import nl.cheesydevs.minetopia.utils.Chat;
 import nl.cheesydevs.minetopia.utils.interfaces.SubCommandManager;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
-import org.bukkit.entity.Player;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -23,11 +22,19 @@ public class ModuleCMD extends BukkitCommand {
 
     @Override
     public boolean execute(@Nonnull CommandSender sender, @Nonnull String label, @Nonnull String[] args) {
-        if (!(sender instanceof Player)) return false;
         if(!sender.hasPermission(Objects.requireNonNull(getPermission()))) return false;
         if(args.length > 0) {
             if(args[0].equalsIgnoreCase("reload")) {
                 if(args.length < 2) {sender.sendMessage(Chat.color("&c/module reload <module>")); return false;}
+                if(args[1].equalsIgnoreCase("core")) {
+                    sender.sendMessage(Chat.color("&aReloading all modules!"));
+                    sender.sendMessage(Minetopia.getModules().size()+" size");
+                    for (Module module : Minetopia.getModules()) {
+                        Minetopia.reloadModule(module);
+                    }
+                    sender.sendMessage(Chat.color("&aReloaded all modules!"));
+                    return true;
+                }
                 Module module = null;
                 for (Module x : Minetopia.getModules()) {
                     if(x.name().equalsIgnoreCase(args[1])) {

@@ -1,5 +1,6 @@
 package nl.cheesydevs.minetopia.utils;
 
+import nl.cheesydevs.minetopia.Minetopia;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -23,11 +24,14 @@ public class Chat {
     }
 
     public static void refreshPlayerPlaceholders(Player player) {
+        PlayerData playerData = Minetopia.getApi().getPlayerData().getPlayer(player);
         placeholdersPlayers.remove(player); // just to be safe
         List<Placeholder> placeholderList = new ArrayList<>();
-        placeholderList.add(new Placeholder("<Money>", Vault.getBalanceFormatted(player)));      // Money with vault
-        placeholderList.add(new Placeholder("<Player>", player.getDisplayName()));               // Display name
-        placeholderList.add(new Placeholder("<Name>", player.getName()));                        // Name
+        placeholderList.add(new Placeholder("<Money>", Minetopia.getApi().getPlayerData().getMoneyFormatted(player)));           // Money with vault
+        placeholderList.add(new Placeholder("<Level>", playerData.getLevel()+""));                                    // Level
+        placeholderList.add(new Placeholder("<Fitheid>", playerData.getFitheid()+""));                                // Fitheid
+        placeholderList.add(new Placeholder("<Player>", player.getDisplayName()));                                              // Display name
+        placeholderList.add(new Placeholder("<Name>", player.getName()));                                                       // Name
         placeholdersPlayers.put(player, placeholderList);
     }
 }
