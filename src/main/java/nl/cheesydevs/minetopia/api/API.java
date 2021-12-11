@@ -6,6 +6,9 @@ public class API {
         return playerData;
     }
 
+    /**
+     * DO NOT USE THIS!
+     */
     public static void setup() {
         playerData = new PlayerDataAPI();
     }

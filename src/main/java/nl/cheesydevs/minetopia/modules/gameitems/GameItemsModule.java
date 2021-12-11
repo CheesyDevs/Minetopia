@@ -1,12 +1,12 @@
 package nl.cheesydevs.minetopia.modules.gameitems;
 
-import nl.cheesydevs.minetopia.modules.Module;
+import nl.cheesydevs.minetopia.modules.MinetopiaModule;
 import nl.cheesydevs.minetopia.modules.gameitems.commands.GameItemsCMD;
 import nl.cheesydevs.minetopia.utils.files.GameItemsFile;
 import nl.cheesydevs.minetopia.utils.version.command.Command;
 
 @SuppressWarnings("SpellCheckingInspection")
-public class GameItemsModule implements Module {
+public class GameItemsModule extends MinetopiaModule {
 
     @Override
     public String name() {
@@ -17,11 +17,6 @@ public class GameItemsModule implements Module {
     public void onEnable() {
         GameItemsFile.setup();
         registerCommands();
-    }
-
-    @Override
-    public void onDisable() {
-
     }
 
     private void registerCommands() {

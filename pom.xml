@@ -6,12 +6,24 @@
 
     <groupId>nl.cheesydevs</groupId>
     <artifactId>Minetopia</artifactId>
-    <version>0.0.5</version>
+    <version>0.0.6</version>
     <packaging>jar</packaging>
 
     <name>Minetopia</name>
 
     <description>De all in one Minetopia plugin</description>
+    <contributors>
+        <contributor>
+            <!-- You may add your self if you contributed with this project -->
+            <name>GameHugo_</name>
+            <organization>CheesyDevs</organization>
+            <url>https://cheesydevs.nl</url>
+            <roles>
+                <role>Founder</role>
+            </roles>
+            <timezone>Europe/Amsterdam</timezone>
+        </contributor>
+    </contributors>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

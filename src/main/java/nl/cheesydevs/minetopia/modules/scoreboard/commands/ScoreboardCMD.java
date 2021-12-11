@@ -2,6 +2,7 @@ package nl.cheesydevs.minetopia.modules.scoreboard.commands;
 
 import nl.cheesydevs.minetopia.modules.scoreboard.utils.Scoreboard;
 import nl.cheesydevs.minetopia.utils.Chat;
+import nl.cheesydevs.minetopia.utils.files.LanguageFile;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
@@ -25,10 +26,10 @@ public class ScoreboardCMD extends BukkitCommand {
             Player p = (Player) sender;
             if(Scoreboard.getEnabled().contains(p)) {
                 Scoreboard.remove(p);
-                p.sendMessage(Chat.color("&aJe hebt je scoreboard uit gezet!"));
+                p.sendMessage(LanguageFile.get("ScoreboardDisabled"));
             } else {
                 Scoreboard.add(p);
-                p.sendMessage(Chat.color("&aJe hebt je scoreboard aan gezet!"));
+                p.sendMessage(LanguageFile.get("ScoreboardEnabled"));
             }
         }
         return true;

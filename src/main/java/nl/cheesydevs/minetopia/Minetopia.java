@@ -3,11 +3,14 @@ package nl.cheesydevs.minetopia;
 import nl.cheesydevs.minetopia.api.API;
 import nl.cheesydevs.minetopia.api.events.OnModuleDisableEvent;
 import nl.cheesydevs.minetopia.api.events.OnModuleEnableEvent;
+import nl.cheesydevs.minetopia.modules.MinetopiaModule;
 import nl.cheesydevs.minetopia.modules.Module;
+import nl.cheesydevs.minetopia.modules.atm.ATMModule;
 import nl.cheesydevs.minetopia.modules.core.CoreModule;
 import nl.cheesydevs.minetopia.modules.gameitems.GameItemsModule;
 import nl.cheesydevs.minetopia.modules.scoreboard.ScoreBoardModule;
 import nl.cheesydevs.minetopia.utils.*;
+import nl.cheesydevs.minetopia.utils.files.ModulesFile;
 import nl.cheesydevs.minetopia.utils.version.VersionManager;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
@@ -16,21 +19,24 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public final class Minetopia extends JavaPlugin {
+
+    /* TODO:
+    Working on atm system
+     */
 
     /*
             (PreviousVersion-NewVersion)
-    LAST CHANGES: (V0.0.4-V0.0.5)
-    Added api class
-    Added PlayerData
-    Added new placeholders for new PlayerData
-    Added job class but isn't in use
-    Fixed reloading modules
-    Changed CommandSystem to now use the plugin name as fallback
-    */
+    LAST CHANGES: (V0.0.5-V0.0.6)
+    Added language file
+    Added modules file
+    Added api descriptions
+    Changed modules to abstract
+     */
     private static API api;
     private static Minetopia instance;
-    private static final List<Module> modules = new ArrayList<>();
+    private static final List<MinetopiaModule> modules = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -59,29 +65,58 @@ public final class Minetopia extends JavaPlugin {
         new Metrics(this, 13543);
 
         // Modules
-        loadModules(new CoreModule(), new GameItemsModule(), new ScoreBoardModule());
+        ModulesFile.setup();
+        loadModules(new CoreModule(), new GameItemsModule(), new ScoreBoardModule(), new ATMModule());
     }
 
-    public static void loadModule(Module module) {
+    @Override
+    public void onDisable() {
+        // Plugin shutdown logic
+        for (MinetopiaModule module : getModules()) {
+            // not calling unloadModule() because it doesn't need to call the event
+            if(modules.contains(module)) {
+                module.onDisable();
+            } else {
+                getInstance().getLogger().severe("Cannot disable module... Not loaded ["+module.name()+"]");
+            }
+        }
+    }
+
+    /**
+     * Load a new module
+     * @param module the module you want to load
+     */
+    public static void loadModule(MinetopiaModule module) {
         if(!modules.contains(module)) {
-            OnModuleEnableEvent onModuleEnableEvent = new OnModuleEnableEvent(module);
-            Bukkit.getPluginManager().callEvent(onModuleEnableEvent);
-            if(!onModuleEnableEvent.isCancelled()) {
-                modules.add(module);
-                module.onEnable();
+            if(!ModulesFile.getConfig().contains(module.name())) {ModulesFile.getConfig().set(module.name(), true);ModulesFile.save();}
+            if(ModulesFile.getConfig().getBoolean(module.name()) || module.name().equals("Core")) {
+                OnModuleEnableEvent onModuleEnableEvent = new OnModuleEnableEvent(module);
+                Bukkit.getPluginManager().callEvent(onModuleEnableEvent);
+                if (!onModuleEnableEvent.isCancelled()) {
+                    modules.add(module);
+                    module.onEnable();
+                }
             }
         } else {
             getInstance().getLogger().severe("Double module... Not enabling ["+module.name()+"]");
         }
     }
 
-    public static void loadModules(Module... modules) {
-        for (Module module : modules) {
+    /**
+     * Load a new modules
+     * @param modules the modules you want to load
+     */
+    public static void loadModules(MinetopiaModule... modules) {
+        for (MinetopiaModule module : modules) {
             loadModule(module);
         }
     }
 
-    public static void unloadModule(Module module) {
+    /**
+     * unLoad a new module
+     * @param module the module you want to unload
+     */
+    public static void unloadModule(MinetopiaModule module) {
         if(modules.contains(module)) {
             OnModuleDisableEvent onModuleDisableEvent = new OnModuleDisableEvent(module);
             Bukkit.getPluginManager().callEvent(onModuleDisableEvent);
@@ -94,18 +129,29 @@ public final class Minetopia extends JavaPlugin {
         }
     }
 
-    public static void unloadModules(Module... modules) {
-        for (Module module : modules) {
+    /**
+     * unLoad a new modules
+     * @param modules the modules you want to unload
+     */
+    public static void unloadModules(MinetopiaModule... modules) {
+        for (MinetopiaModule module : modules) {
             unloadModule(module);
         }
     }
 
-    public static void reloadModule(Module module) {
+    /**
+     * reload a module
+     * @param module the module you want to reload
+     */
+    public static void reloadModule(MinetopiaModule module) {
         if(modules.contains(module)) {
-            OnModuleDisableEvent onModuleDisableEvent = new OnModuleDisableEvent(module);
-            Bukkit.getPluginManager().callEvent(onModuleDisableEvent);
-            if (!onModuleDisableEvent.isCancelled()) {
-                module.onDisable();
+            if(!ModulesFile.getConfig().contains(module.name())) {ModulesFile.getConfig().set(module.name(), true);ModulesFile.save();}
+            if(ModulesFile.getConfig().getBoolean(module.name()) || module.name().equals("Core")) {
+                OnModuleDisableEvent onModuleDisableEvent = new OnModuleDisableEvent(module);
+                Bukkit.getPluginManager().callEvent(onModuleDisableEvent);
+                if (!onModuleDisableEvent.isCancelled()) {
+                    module.onDisable();
+                }
             }
         } else {
             getInstance().getLogger().severe("Cannot disable module... Not loaded ["+module.name()+"]");
@@ -117,15 +163,14 @@ public final class Minetopia extends JavaPlugin {
         }
     }
 
-    public static void reloadModules(Module... modules) {
-        for (Module module : modules) {
+    /**
+     * reload modules
+     * @param modules the modules you want to reload
+     */
+    public static void reloadModules(MinetopiaModule... modules) {
+        for (MinetopiaModule module : modules) {
             reloadModule(module);
         }
-    }
-
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
     }
 
     private boolean checkDependency() {
@@ -146,6 +191,10 @@ public final class Minetopia extends JavaPlugin {
         return x;
     }
 
+    /**
+     * Get the api of this plugin
+     * @return the api
+     */
     public static API getApi() {
         return api;
     }
@@ -156,7 +205,7 @@ public final class Minetopia extends JavaPlugin {
         }
         return Chat.color("Modules ("+Minetopia.getModules().size()+"): "+stringBuilder.substring(4));
     }
-    public static List<Module> getModules() {
+    public static List<MinetopiaModule> getModules() {
         return modules;
     }
     public static Minetopia getInstance() {

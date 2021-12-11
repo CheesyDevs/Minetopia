@@ -1,7 +1,7 @@
 package nl.cheesydevs.minetopia.modules.scoreboard;
 
 import nl.cheesydevs.minetopia.Minetopia;
-import nl.cheesydevs.minetopia.modules.Module;
+import nl.cheesydevs.minetopia.modules.MinetopiaModule;
 import nl.cheesydevs.minetopia.modules.scoreboard.commands.ScoreboardCMD;
 import nl.cheesydevs.minetopia.modules.scoreboard.utils.Scoreboard;
 import nl.cheesydevs.minetopia.utils.files.Config;
@@ -9,7 +9,7 @@ import nl.cheesydevs.minetopia.utils.version.command.Command;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-public class ScoreBoardModule implements Module {
+public class ScoreBoardModule extends MinetopiaModule {
 
     @Override
     public String name() {
