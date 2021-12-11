@@ -4,9 +4,9 @@ name: Build and Code analyzer
 
 on:
   push:
-    branches: [ main, early-development, testing ]
+    branches: [ main, early-development ]
   pull_request:
-    branches: [ main, early-development, testing ]
+    branches: [ main, early-development ]
 
 jobs:
   build:

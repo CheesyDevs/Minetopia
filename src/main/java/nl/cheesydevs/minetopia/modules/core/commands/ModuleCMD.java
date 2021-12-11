@@ -1,8 +1,10 @@
 package nl.cheesydevs.minetopia.modules.core.commands;
 
 import nl.cheesydevs.minetopia.Minetopia;
+import nl.cheesydevs.minetopia.modules.MinetopiaModule;
 import nl.cheesydevs.minetopia.modules.Module;
 import nl.cheesydevs.minetopia.utils.Chat;
+import nl.cheesydevs.minetopia.utils.files.ModulesFile;
 import nl.cheesydevs.minetopia.utils.interfaces.SubCommandManager;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
@@ -28,15 +30,14 @@ public class ModuleCMD extends BukkitCommand {
                 if(args.length < 2) {sender.sendMessage(Chat.color("&c/module reload <module>")); return false;}
                 if(args[1].equalsIgnoreCase("core")) {
                     sender.sendMessage(Chat.color("&aReloading all modules!"));
-                    sender.sendMessage(Minetopia.getModules().size()+" size");
-                    for (Module module : Minetopia.getModules()) {
+                    for (MinetopiaModule module : Minetopia.getModules()) {
                         Minetopia.reloadModule(module);
                     }
                     sender.sendMessage(Chat.color("&aReloaded all modules!"));
                     return true;
                 }
-                Module module = null;
-                for (Module x : Minetopia.getModules()) {
+                MinetopiaModule module = null;
+                for (MinetopiaModule x : Minetopia.getModules()) {
                     if(x.name().equalsIgnoreCase(args[1])) {
                         module = x;
                         break;

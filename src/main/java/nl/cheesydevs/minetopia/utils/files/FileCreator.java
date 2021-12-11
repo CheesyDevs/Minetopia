@@ -7,6 +7,10 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 public class FileCreator {
 
@@ -48,5 +52,9 @@ public class FileCreator {
             e.printStackTrace();
         }
         return fileConfig;
+    }
+
+    public static YamlConfiguration getDefault(String filename) {
+        return YamlConfiguration.loadConfiguration(new InputStreamReader(Objects.requireNonNull(Minetopia.getInstance().getResource(filename)), StandardCharsets.UTF_8));
     }
 }
