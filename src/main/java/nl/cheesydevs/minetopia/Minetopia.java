@@ -3,9 +3,10 @@ package nl.cheesydevs.minetopia;
 import nl.cheesydevs.minetopia.api.API;
 import nl.cheesydevs.minetopia.api.events.OnModuleDisableEvent;
 import nl.cheesydevs.minetopia.api.events.OnModuleEnableEvent;
+import nl.cheesydevs.minetopia.listeners.InventoryClick;
 import nl.cheesydevs.minetopia.modules.MinetopiaModule;
 import nl.cheesydevs.minetopia.modules.Module;
-import nl.cheesydevs.minetopia.modules.atm.ATMModule;
+import nl.cheesydevs.minetopia.modules.bank.BankModule;
 import nl.cheesydevs.minetopia.modules.core.CoreModule;
 import nl.cheesydevs.minetopia.modules.gameitems.GameItemsModule;
 import nl.cheesydevs.minetopia.modules.scoreboard.ScoreBoardModule;
@@ -24,23 +25,24 @@ public final class Minetopia extends JavaPlugin {
 
     /* TODO:
     Working on atm system
+    Working on rekening maak command
      */
 
     /*
             (PreviousVersion-NewVersion)
-    LAST CHANGES: (V0.0.5-V0.0.6)
-    Added language file
-    Added modules file
-    Added api descriptions
-    Changed modules to abstract
+    LAST CHANGES: (V0.0.6-V0.0.7)
+    Added a Gui system
+    Added GuiSize system to get the size of a gui easy
+    Added startup messages
+    Added rekening api and file
+    Fixed ATMMainMenu with new gui system
      */
     private static API api;
     private static Minetopia instance;
     private static final List<MinetopiaModule> modules = new ArrayList<>();
 
     @Override
-    public void onEnable() {
-        // Plugin startup logic
+    public void onLoad() {
         instance = this;
         if(!getDescription().getAuthors().contains("GameHugo_") || !getDescription().getAuthors().contains("patatje")) {
             getLogger().severe("You removed the real authors from the plugin.yml... Not cool bro.");
@@ -52,21 +54,32 @@ public final class Minetopia extends JavaPlugin {
             getPluginLoader().disablePlugin(this);
             return;
         }
+        // extra's
+        VersionManager.setup();
+        api = new API();
+        API.setup();
+
+        // Modules file
+        ModulesFile.setup();
+    }
+
+    @Override
+    public void onEnable() {
+        // Checking vault dependency
+        Message.startupHeader();
         if(!Vault.setupEconomy()) {
             getLogger().severe("Vault is not setup correctly. Did you install essentials?");
             getPluginLoader().disablePlugin(this);
             return;
         }
 
-        // extra's
-        VersionManager.setup();
-        api = new API();
-        API.setup();
-        new Metrics(this, 13543);
-
         // Modules
-        ModulesFile.setup();
-        loadModules(new CoreModule(), new GameItemsModule(), new ScoreBoardModule(), new ATMModule());
+        Minetopia.getInstance().getServer().getPluginManager().registerEvents(new InventoryClick(), Minetopia.getInstance());
+        loadModules(new CoreModule(), new GameItemsModule(), new ScoreBoardModule(), new BankModule());
+
+        // extra's
+        new Metrics(this, 13543);
+        Message.startupFooter();
     }
 
     @Override

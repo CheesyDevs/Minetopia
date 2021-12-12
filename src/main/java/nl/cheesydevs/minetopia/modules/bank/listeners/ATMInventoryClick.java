@@ -1,4 +1,4 @@
-package nl.cheesydevs.minetopia.modules.atm.listeners;
+package nl.cheesydevs.minetopia.modules.bank.listeners;
 
 import nl.cheesydevs.minetopia.utils.files.LanguageFile;
 import org.bukkit.event.EventHandler;

@@ -1,0 +1,41 @@
+package nl.cheesydevs.minetopia.modules.bank.utils;
+
+import nl.cheesydevs.minetopia.utils.interfaces.ChestGui;
+import nl.cheesydevs.minetopia.utils.interfaces.Gui;
+import nl.cheesydevs.minetopia.utils.interfaces.GuiHelper;
+import nl.cheesydevs.minetopia.utils.interfaces.GuiSlots;
+import org.bukkit.Material;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.Inventory;
+
+public class BankRekeningMenu implements Gui {
+
+    @Override
+    public String getTitle() {
+        return "b";
+    }
+
+    @Override
+    public int getSize() {
+        return new GuiSlots(6).toInteger();
+    }
+
+    @Override
+    public Inventory getInventory() {
+        ChestGui gui = new ChestGui(this);
+        for (int i = 0; i < 9; i++) {
+            gui.setItem(new GuiSlots(4, i).toInteger(), GuiHelper.getItem(Material.PURPLE_STAINED_GLASS_PANE, " "));
+        }
+        return gui.getInventory();
+    }
+
+    @Override
+    public boolean cancelItemClick() {
+        return true;
+    }
+
+    @Override
+    public void onInventoryClickEvent(InventoryClickEvent e) {
+
+    }
+}
