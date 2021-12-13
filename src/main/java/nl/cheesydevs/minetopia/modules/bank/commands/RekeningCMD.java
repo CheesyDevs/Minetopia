@@ -2,6 +2,8 @@ package nl.cheesydevs.minetopia.modules.bank.commands;
 
 import nl.cheesydevs.minetopia.Minetopia;
 import nl.cheesydevs.minetopia.modules.bank.utils.RekeningType;
+import nl.cheesydevs.minetopia.utils.Chat;
+import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
@@ -20,13 +22,34 @@ public class RekeningCMD extends BukkitCommand {
         setPermission("minetopia.rekening");
     }
 
+    private void help(CommandSender sender) {
+
+    }
+
     @Override
     public boolean execute(@Nonnull CommandSender sender, @Nonnull String label, @Nonnull String[] args) {
         if(!(sender instanceof Player)) return false;
         if(!sender.hasPermission(Objects.requireNonNull(getPermission()))) return false;
         Player p = (Player) sender;
-        List<OfflinePlayer> players = new ArrayList<>();players.add(p);
-        Minetopia.getApi().getBanking().makeRekening(RekeningType.PERSONAL, p, players);
+        if(args.length > 0) {
+            // rekening maak <RekeningType> <Player>
+            if(args[0].equalsIgnoreCase("maak")) {
+                if(args.length == 3) {
+                    if(!RekeningType.exists(args[1])) {sender.sendMessage("RekeningType not existing");return false;}
+                    if(Bukkit.getPlayer(args[2]) == null) {sender.sendMessage("Player not online"); return false;}
+                    Player target = Bukkit.getPlayer(args[2]);
+                    List<OfflinePlayer> players = new ArrayList<>();players.add(target);
+                    Minetopia.getApi().getBanking().makeRekening(RekeningType.get(args[1]), target, players);
+                    sender.sendMessage(Chat.color("&aMade rekening with id "+Minetopia.getApi().getBanking().getLastRekeningId()));
+                } else {
+                    // help message for maak (rekening maak <RekeningType> <Player>)
+                }
+            } else {
+                help(sender);
+            }
+        } else {
+            help(sender);
+        }
         return true;
     }
 }

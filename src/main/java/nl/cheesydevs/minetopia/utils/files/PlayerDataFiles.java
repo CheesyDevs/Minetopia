@@ -52,6 +52,7 @@ public class PlayerDataFiles {
 
     public static void saveRekening(Rekening rekening) {
         getBankingConfig().set(rekening.getRekeningID()+".RekeningType", rekening.getRekeningType().toString());
+        getBankingConfig().set(rekening.getRekeningID()+".Name", rekening.getOwner().getName());
         getBankingConfig().set(rekening.getRekeningID()+".Owner", rekening.getOwner().getUniqueId().toString());
         List<String> players = new ArrayList<>();
         for (OfflinePlayer player : rekening.getPlayers()) {
