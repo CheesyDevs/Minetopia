@@ -1,14 +1,11 @@
 package nl.cheesydevs.minetopia.modules.bank.utils;
 
-import nl.cheesydevs.minetopia.utils.interfaces.ChestGui;
-import nl.cheesydevs.minetopia.utils.interfaces.Gui;
-import nl.cheesydevs.minetopia.utils.interfaces.GuiHelper;
-import nl.cheesydevs.minetopia.utils.interfaces.GuiSlots;
+import nl.cheesydevs.minetopia.utils.interfaces.*;
 import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 
-public class BankRekeningMenu implements Gui {
+public class BankRekeningMenu extends MinetopiaGui {
 
     @Override
     public String getTitle() {

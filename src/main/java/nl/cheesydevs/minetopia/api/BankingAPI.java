@@ -92,6 +92,7 @@ public class BankingAPI {
     public List<Rekening> getRekeningList() {
         List<Rekening> rekening = new ArrayList<>();
         for (String id : PlayerDataFiles.getBankingConfig().getKeys(false)) {
+            if(id.equals("id")) continue;
             rekening.add(getRekening(Integer.parseInt(id)));
         }
         return rekening;

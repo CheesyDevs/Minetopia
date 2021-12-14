@@ -1,16 +1,14 @@
 package nl.cheesydevs.minetopia.modules.bank.utils;
 
 import nl.cheesydevs.minetopia.utils.files.LanguageFile;
-import nl.cheesydevs.minetopia.utils.interfaces.ChestGui;
-import nl.cheesydevs.minetopia.utils.interfaces.Gui;
-import nl.cheesydevs.minetopia.utils.interfaces.GuiHelper;
-import nl.cheesydevs.minetopia.utils.interfaces.GuiSlots;
+import nl.cheesydevs.minetopia.utils.interfaces.*;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 
 @SuppressWarnings("SpellCheckingInspection")
-public class BankMainMenu implements Gui {
+public class BankMainMenu extends MinetopiaGui {
 
     @Override
     public String getTitle() {
@@ -41,7 +39,8 @@ public class BankMainMenu implements Gui {
         if(e.getCurrentItem() == null) return;
         if(e.getCurrentItem().getItemMeta() == null) return;
         if(e.getCurrentItem().getItemMeta().getDisplayName().equals(LanguageFile.get("SpaarRekening"))) {
-            e.getWhoClicked().openInventory(new BankRekeningMenu().getInventory());
+            if(!(e.getWhoClicked() instanceof Player)) return;
+            e.getWhoClicked().openInventory(new BankChooseMenu().getInventory((Player) e.getWhoClicked()));
         }
     }
 

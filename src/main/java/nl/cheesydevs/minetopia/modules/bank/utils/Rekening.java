@@ -1,6 +1,5 @@
 package nl.cheesydevs.minetopia.modules.bank.utils;
 
-import nl.cheesydevs.minetopia.utils.Chat;
 import nl.cheesydevs.minetopia.utils.files.Config;
 import org.bukkit.OfflinePlayer;
 
