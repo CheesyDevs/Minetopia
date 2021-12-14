@@ -3,6 +3,7 @@ package nl.cheesydevs.minetopia.modules.bank;
 import nl.cheesydevs.minetopia.modules.MinetopiaModule;
 import nl.cheesydevs.minetopia.modules.bank.commands.OpenBankCMD;
 import nl.cheesydevs.minetopia.modules.bank.commands.RekeningCMD;
+import nl.cheesydevs.minetopia.modules.bank.utils.BankChooseMenu;
 import nl.cheesydevs.minetopia.modules.bank.utils.BankMainMenu;
 import nl.cheesydevs.minetopia.modules.bank.utils.BankRekeningMenu;
 import nl.cheesydevs.minetopia.utils.interfaces.GuiManager;
@@ -18,13 +19,14 @@ public class BankModule extends MinetopiaModule {
 
     @Override
     public void onEnable() {
-        registerCommands();
-        GuiManager.register(new BankMainMenu());
-        GuiManager.register(new BankRekeningMenu());
+        register();
     }
 
-    private void registerCommands() {
+    private void register() {
         Command.register(new OpenBankCMD("openbank"));
         Command.register(new RekeningCMD("rekening"));
+        GuiManager.register(new BankMainMenu());
+        GuiManager.register(new BankChooseMenu());
+        GuiManager.register(new BankRekeningMenu());
     }
 }

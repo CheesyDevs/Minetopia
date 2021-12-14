@@ -44,7 +44,6 @@ public class BankChooseMenu extends MinetopiaGui {
                 itemMeta.setLore(lore);
                 item.setItemMeta(itemMeta);
                 NBT.set(item, "id", String.valueOf(rekening.getRekeningID()));
-                Minetopia.getInstance().getLogger().info(String.valueOf(rekening.getRekeningID()));
                 gui.setItem(slot, item);
                 slot++;
             }
