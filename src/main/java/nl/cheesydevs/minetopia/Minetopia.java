@@ -11,6 +11,7 @@ import nl.cheesydevs.minetopia.modules.core.CoreModule;
 import nl.cheesydevs.minetopia.modules.gameitems.GameItemsModule;
 import nl.cheesydevs.minetopia.modules.scoreboard.ScoreBoardModule;
 import nl.cheesydevs.minetopia.utils.*;
+import nl.cheesydevs.minetopia.utils.files.Config;
 import nl.cheesydevs.minetopia.utils.files.ModulesFile;
 import nl.cheesydevs.minetopia.utils.version.VersionManager;
 import org.bstats.bukkit.Metrics;
@@ -56,6 +57,7 @@ public final class Minetopia extends JavaPlugin {
         }
         // extra's
         VersionManager.setup();
+        Config.setup();
         api = new API();
         API.setup();
 
@@ -72,7 +74,9 @@ public final class Minetopia extends JavaPlugin {
             getPluginLoader().disablePlugin(this);
             return;
         }
-
+        if(getApi().getSettings().getDebug()) {
+            getLogger().info(" "); // empty line for organization
+        }
         // Modules
         Minetopia.getInstance().getServer().getPluginManager().registerEvents(new InventoryClick(), Minetopia.getInstance());
         loadModules(new CoreModule(), new GameItemsModule(), new ScoreBoardModule(), new BankModule());
@@ -106,6 +110,9 @@ public final class Minetopia extends JavaPlugin {
                 OnModuleEnableEvent onModuleEnableEvent = new OnModuleEnableEvent(module);
                 Bukkit.getPluginManager().callEvent(onModuleEnableEvent);
                 if (!onModuleEnableEvent.isCancelled()) {
+                    if(getApi().getSettings().getDebug()) {
+                        Minetopia.getInstance().getLogger().info("Enabling module "+module.name());
+                    }
                     modules.add(module);
                     module.onEnable();
                 }
@@ -134,6 +141,9 @@ public final class Minetopia extends JavaPlugin {
             OnModuleDisableEvent onModuleDisableEvent = new OnModuleDisableEvent(module);
             Bukkit.getPluginManager().callEvent(onModuleDisableEvent);
             if (!onModuleDisableEvent.isCancelled()) {
+                if(getApi().getSettings().getDebug()) {
+                    Minetopia.getInstance().getLogger().info("Disabling module "+module.name());
+                }
                 modules.remove(module);
                 module.onDisable();
             }
@@ -163,6 +173,9 @@ public final class Minetopia extends JavaPlugin {
                 OnModuleDisableEvent onModuleDisableEvent = new OnModuleDisableEvent(module);
                 Bukkit.getPluginManager().callEvent(onModuleDisableEvent);
                 if (!onModuleDisableEvent.isCancelled()) {
+                    if(getApi().getSettings().getDebug()) {
+                        Minetopia.getInstance().getLogger().info("Disabling module "+module.name());
+                    }
                     module.onDisable();
                 }
             }
@@ -172,6 +185,9 @@ public final class Minetopia extends JavaPlugin {
         OnModuleEnableEvent onModuleEnableEvent = new OnModuleEnableEvent(module);
         Bukkit.getPluginManager().callEvent(onModuleEnableEvent);
         if(!onModuleEnableEvent.isCancelled()) {
+            if(getApi().getSettings().getDebug()) {
+                Minetopia.getInstance().getLogger().info("Enabling module "+module.name());
+            }
             module.onEnable();
         }
     }

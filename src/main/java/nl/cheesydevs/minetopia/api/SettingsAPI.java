@@ -7,6 +7,14 @@ import java.io.IOException;
 public class SettingsAPI {
 
     /**
+     * Get debug from config.yml
+     * @return debug setting from config.yml
+     */
+    public boolean getDebug() {
+        return Config.getConfig().getBoolean("Debug");
+    }
+
+    /**
      * Get LagReducer if you want te add it into a module
      * @apiNote Can only be 0-3 (will change automatically if not that)
      * @return LagReducer setting from config.yml
