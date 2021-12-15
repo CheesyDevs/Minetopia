@@ -23,14 +23,13 @@ public class RekeningCMD extends BukkitCommand {
     }
 
     private void help(CommandSender sender) {
-
+        sender.sendMessage(Chat.color("&c/rekening maak <RekeningType> <Player>"));
     }
 
     @Override
     public boolean execute(@Nonnull CommandSender sender, @Nonnull String label, @Nonnull String[] args) {
         if(!(sender instanceof Player)) return false;
         if(!sender.hasPermission(Objects.requireNonNull(getPermission()))) return false;
-        Player p = (Player) sender;
         if(args.length > 0) {
             // rekening maak <RekeningType> <Player>
             if(args[0].equalsIgnoreCase("maak")) {
@@ -43,6 +42,7 @@ public class RekeningCMD extends BukkitCommand {
                     sender.sendMessage(Chat.color("&aMade rekening with id "+Minetopia.getApi().getBanking().getLastRekeningId()));
                 } else {
                     // help message for maak (rekening maak <RekeningType> <Player>)
+                    sender.sendMessage(Chat.color("&c/rekening maak <RekeningType> <Player>"));
                 }
             } else {
                 help(sender);

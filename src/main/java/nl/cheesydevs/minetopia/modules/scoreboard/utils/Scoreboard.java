@@ -17,7 +17,7 @@ import java.util.Objects;
 public class Scoreboard {
 
     private static org.bukkit.scoreboard.Scoreboard scoreboard;
-    private static List<Player> enabled = new ArrayList<>();
+    private static final List<Player> enabled = new ArrayList<>();
 
     public static void setup() {
         List<String> scoreboardList = Config.getConfig().getStringList("Scoreboard");

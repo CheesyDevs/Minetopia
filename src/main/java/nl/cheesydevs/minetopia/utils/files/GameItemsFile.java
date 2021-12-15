@@ -4,7 +4,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import java.io.File;
 
-@SuppressWarnings("SpellCheckingInspection")
+@SuppressWarnings({"SpellCheckingInspection", "unused"})
 public class GameItemsFile {
 
     private static File file;

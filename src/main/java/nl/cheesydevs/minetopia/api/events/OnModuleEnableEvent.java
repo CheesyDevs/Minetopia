@@ -7,6 +7,7 @@ import org.bukkit.event.HandlerList;
 
 import javax.annotation.Nonnull;
 
+@SuppressWarnings("unused")
 public class OnModuleEnableEvent extends Event implements Cancellable {
 
     private static final HandlerList HANDLERS = new HandlerList();

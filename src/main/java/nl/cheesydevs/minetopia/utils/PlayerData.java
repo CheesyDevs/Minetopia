@@ -1,5 +1,6 @@
 package nl.cheesydevs.minetopia.utils;
 
+@SuppressWarnings("unused")
 public class PlayerData {
     private Job job;
     private int level;

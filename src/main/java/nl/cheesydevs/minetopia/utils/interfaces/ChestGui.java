@@ -6,6 +6,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 
+@SuppressWarnings("unused")
 public class ChestGui {
     private final Gui gui;
     HashMap<Integer, ItemStack> slots = new HashMap<>();

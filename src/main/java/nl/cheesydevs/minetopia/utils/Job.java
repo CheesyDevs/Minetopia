@@ -4,6 +4,7 @@ import org.bukkit.OfflinePlayer;
 
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class Job {
     String prefix;
     List<OfflinePlayer> players;

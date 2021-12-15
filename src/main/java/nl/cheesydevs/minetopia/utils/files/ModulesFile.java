@@ -5,6 +5,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import java.io.File;
 import java.io.IOException;
 
+@SuppressWarnings("unused")
 public class ModulesFile {
     private static File file;
     private static FileConfiguration config;

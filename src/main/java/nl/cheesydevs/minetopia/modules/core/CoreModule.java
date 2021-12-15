@@ -2,7 +2,6 @@ package nl.cheesydevs.minetopia.modules.core;
 
 import nl.cheesydevs.minetopia.Minetopia;
 import nl.cheesydevs.minetopia.modules.MinetopiaModule;
-import nl.cheesydevs.minetopia.modules.Module;
 import nl.cheesydevs.minetopia.modules.core.commands.MinetopiaCMD;
 import nl.cheesydevs.minetopia.modules.core.commands.ModuleCMD;
 import nl.cheesydevs.minetopia.modules.core.commands.MoneyCMD;

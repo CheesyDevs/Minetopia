@@ -8,6 +8,7 @@ import org.bukkit.command.defaults.BukkitCommand;
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class MinetopiaCMD extends BukkitCommand {
     public MinetopiaCMD(String name) {
         super(name);

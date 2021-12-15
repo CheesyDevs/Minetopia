@@ -1,5 +1,6 @@
 package nl.cheesydevs.minetopia.utils.interfaces;
 
+@SuppressWarnings("unused")
 public class GuiSlots {
     private final int rows;
     private int extraSlots = 0;

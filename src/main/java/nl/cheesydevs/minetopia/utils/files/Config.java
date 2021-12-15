@@ -5,6 +5,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import java.io.File;
 
+@SuppressWarnings("unused")
 public class Config {
 
     private static File file;
