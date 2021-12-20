@@ -1,7 +1,6 @@
 package nl.cheesydevs.minetopia.utils.files;
 
 import nl.cheesydevs.minetopia.Minetopia;
-import nl.cheesydevs.minetopia.modules.bank.utils.Rekening;
 import nl.cheesydevs.minetopia.utils.PlayerData;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -48,18 +47,6 @@ public class PlayerDataFiles {
         getPlayerConfig().set(player.getUniqueId()+".Level", playerData.getLevel());
         getPlayerConfig().set(player.getUniqueId()+".Fitheid", playerData.getFitheid());
         savePlayerFile();
-    }
-
-    public static void saveRekening(Rekening rekening) {
-        getBankingConfig().set(rekening.getRekeningID()+".RekeningType", rekening.getRekeningType().toString());
-        getBankingConfig().set(rekening.getRekeningID()+".Name", rekening.getName());
-        getBankingConfig().set(rekening.getRekeningID()+".Owner", rekening.getOwner().getUniqueId().toString());
-        List<String> players = new ArrayList<>();
-        for (OfflinePlayer player : rekening.getPlayers()) {
-            players.add(player.getUniqueId().toString());
-        }
-        getBankingConfig().set(rekening.getRekeningID()+".Players", players);
-        saveBankingFile();
     }
 
     public static void savePlayerFile() {

@@ -24,12 +24,8 @@ public class Chat {
     }
 
     public static void refreshPlayerPlaceholders(Player player) {
-        PlayerData playerData = Minetopia.getApi().getPlayerData().getPlayer(player);
         placeholdersPlayers.remove(player); // just to be safe
         List<Placeholder> placeholderList = new ArrayList<>();
-        placeholderList.add(new Placeholder("<Money>", Minetopia.getApi().getPlayerData().getMoneyFormatted(player)));           // Money with vault
-        placeholderList.add(new Placeholder("<Level>", playerData.getLevel()+""));                                    // Level
-        placeholderList.add(new Placeholder("<Fitheid>", playerData.getFitheid()+""));                                // Fitheid
         placeholderList.add(new Placeholder("<Player>", player.getDisplayName()));                                              // Display name
         placeholderList.add(new Placeholder("<Name>", player.getName()));                                                       // Name
         placeholdersPlayers.put(player, placeholderList);
