@@ -13,6 +13,7 @@ public class Command {
         else if(VersionManager.getVersion().equals(Version.v1_15_2)) {Command1_15_2.register(cmd);}
         else if(VersionManager.getVersion().equals(Version.v1_16_5)) {Command1_16_5.register(cmd);}
         else if(VersionManager.getVersion().equals(Version.v1_17_1)) {Command1_17_1.register(cmd);}
+        else if(VersionManager.getVersion().equals(Version.v1_18_1)) {Command1_18_1.register(cmd);}
         else {Command1_16_5.register(cmd);}
     }
 }
