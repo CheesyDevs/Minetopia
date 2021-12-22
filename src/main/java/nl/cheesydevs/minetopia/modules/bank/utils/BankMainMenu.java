@@ -1,5 +1,9 @@
 package nl.cheesydevs.minetopia.modules.bank.utils;
 
+import nl.cheesydevs.minetopia.api.utils.bank.RekeningType;
+import nl.cheesydevs.minetopia.modules.bank.utils.choosemenu.BankCompanyMenu;
+import nl.cheesydevs.minetopia.modules.bank.utils.choosemenu.BankPersonalMenu;
+import nl.cheesydevs.minetopia.modules.bank.utils.choosemenu.BankSavingsMenu;
 import nl.cheesydevs.minetopia.utils.files.LanguageFile;
 import nl.cheesydevs.minetopia.utils.interfaces.*;
 import org.bukkit.Material;
@@ -38,11 +42,38 @@ public class BankMainMenu extends MinetopiaGui {
     public void onInventoryClickEvent(InventoryClickEvent e) {
         if(e.getCurrentItem() == null) return;
         if(e.getCurrentItem().getItemMeta() == null) return;
+        if(!(e.getWhoClicked() instanceof Player)) return;
         if(e.getCurrentItem().getItemMeta().getDisplayName().equals(LanguageFile.get("SpaarRekening"))) {
-            if(!(e.getWhoClicked() instanceof Player)) return;
-            e.getWhoClicked().openInventory(new BankChooseMenu().getInventory((Player) e.getWhoClicked()));
+            openInv((Player) e.getWhoClicked(), RekeningType.SAVINGS);
+        } else if(e.getCurrentItem().getItemMeta().getDisplayName().equals(LanguageFile.get("PriveRekenking"))) {
+            openInv((Player) e.getWhoClicked(), RekeningType.PERSONAL);
+        } else if(e.getCurrentItem().getItemMeta().getDisplayName().equals(LanguageFile.get("BedrijfsRekening"))) {
+            openInv((Player) e.getWhoClicked(), RekeningType.COMPANY);
         }
     }
 
-
+    private void openInv(Player player, RekeningType rekeningType) {
+        if(rekeningType.equals(RekeningType.SAVINGS)) {
+            Inventory inv = new BankSavingsMenu().getInventory(player);
+            if (inv != null) {
+                player.openInventory(new BankSavingsMenu().getInventory(player));
+            } else {
+                player.sendMessage(LanguageFile.get("NoSpaarRekening"));
+            }
+        } else if(rekeningType.equals(RekeningType.PERSONAL)) {
+            Inventory inv = new BankPersonalMenu().getInventory(player);
+            if (inv != null) {
+                player.openInventory(new BankPersonalMenu().getInventory(player));
+            } else {
+                player.sendMessage(LanguageFile.get("NoPriveRekening"));
+            }
+        } else if(rekeningType.equals(RekeningType.COMPANY)) {
+            Inventory inv = new BankCompanyMenu().getInventory(player);
+            if (inv != null) {
+                player.openInventory(new BankCompanyMenu().getInventory(player));
+            } else {
+                player.sendMessage(LanguageFile.get("NoBedrijfsRekening"));
+            }
+        }
+    }
 }

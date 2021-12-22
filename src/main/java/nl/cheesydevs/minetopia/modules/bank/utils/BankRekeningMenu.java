@@ -21,7 +21,7 @@ public class BankRekeningMenu extends MinetopiaGui {
     public Inventory getInventory() {
         ChestGui gui = new ChestGui(this);
         for (int i = 0; i < 9; i++) {
-            gui.setItem(new GuiSlots(4, i).toInteger(), GuiHelper.getItem(Material.PURPLE_STAINED_GLASS_PANE, " "));
+            gui.setItem(new GuiSlots(5, i).toInteger(), GuiHelper.getItem(Material.PURPLE_STAINED_GLASS_PANE, " "));
         }
         return gui.getInventory();
     }

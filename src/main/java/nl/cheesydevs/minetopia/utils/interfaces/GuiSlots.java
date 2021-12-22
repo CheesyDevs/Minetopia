@@ -3,7 +3,7 @@ package nl.cheesydevs.minetopia.utils.interfaces;
 @SuppressWarnings("unused")
 public class GuiSlots {
     private final int rows;
-    private int extraSlots = 0;
+    private int extraSlots = -1;
 
     public GuiSlots(int rows, int extraSlots) {
         this.rows = rows;
@@ -14,7 +14,13 @@ public class GuiSlots {
     }
 
     public int toInteger() {
-        return (9*rows)+extraSlots;
+        if(rows > 0 && extraSlots > -1) return 9*(rows-1)+extraSlots;
+        return 9*rows;
+    }
+
+    public String toString() {
+        if(rows > 0 && extraSlots > -1) return String.valueOf(9*(rows-1)+extraSlots);
+        return String.valueOf(9*rows);
     }
 
     public int getExtraSlots() {

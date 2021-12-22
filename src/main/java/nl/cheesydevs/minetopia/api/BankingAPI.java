@@ -86,6 +86,22 @@ public class BankingAPI {
     }
 
     /**
+     * Get all rekeningen of player of the RekeningType
+     * @param player the player you want the rekening from
+     * @param rekeningType the type rekening you want from the player
+     * @return the rekeningen
+     */
+    public List<Rekening> getPlayerRekening(OfflinePlayer player, RekeningType rekeningType) {
+        List<Rekening> rekeningen = new ArrayList<>();
+        for (Rekening rekening : getPlayerRekening(player)) {
+            if (rekening.getRekeningType().equals(rekeningType)) {
+                rekeningen.add(rekening);
+            }
+        }
+        return rekeningen;
+    }
+
+    /**
      * Get all the rekeningen from banking.yml
      * @return the all the rekeningen
      */
