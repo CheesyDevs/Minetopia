@@ -1,6 +1,6 @@
 package nl.cheesydevs.minetopia.utils.interfaces;
 
-import nl.cheesydevs.minetopia.utils.Chat;
+import nl.cheesydevs.minetopia.api.utils.Chat;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;

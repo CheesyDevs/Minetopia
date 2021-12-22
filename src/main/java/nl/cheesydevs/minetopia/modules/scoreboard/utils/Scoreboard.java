@@ -1,6 +1,6 @@
 package nl.cheesydevs.minetopia.modules.scoreboard.utils;
 
-import nl.cheesydevs.minetopia.utils.Chat;
+import nl.cheesydevs.minetopia.api.utils.Chat;
 import nl.cheesydevs.minetopia.utils.files.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

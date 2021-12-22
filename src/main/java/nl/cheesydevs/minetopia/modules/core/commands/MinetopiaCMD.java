@@ -1,7 +1,7 @@
 package nl.cheesydevs.minetopia.modules.core.commands;
 
 import nl.cheesydevs.minetopia.Minetopia;
-import nl.cheesydevs.minetopia.utils.Chat;
+import nl.cheesydevs.minetopia.api.utils.Chat;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 

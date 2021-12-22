@@ -1,6 +1,6 @@
 package nl.cheesydevs.minetopia.modules.core.commands;
 
-import nl.cheesydevs.minetopia.utils.Vault;
+import nl.cheesydevs.minetopia.Minetopia;
 import nl.cheesydevs.minetopia.utils.interfaces.SubCommandManager;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
@@ -21,7 +21,7 @@ public class MoneyCMD extends BukkitCommand {
         }
         if(sender instanceof Player) {
             Player p = (Player) sender;
-            p.sendMessage("Geld: "+ Vault.getBalanceFormatted(p));
+            p.sendMessage("Geld: "+ Minetopia.getApi().getPlayerData().getMoneyFormatted(p));
             return true;
         }
         return false;

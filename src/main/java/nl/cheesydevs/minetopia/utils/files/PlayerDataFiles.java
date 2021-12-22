@@ -1,8 +1,8 @@
 package nl.cheesydevs.minetopia.utils.files;
 
 import nl.cheesydevs.minetopia.Minetopia;
-import nl.cheesydevs.minetopia.modules.bank.utils.Rekening;
-import nl.cheesydevs.minetopia.utils.PlayerData;
+import nl.cheesydevs.minetopia.api.utils.bank.Rekening;
+import nl.cheesydevs.minetopia.api.utils.playerdata.PlayerData;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;

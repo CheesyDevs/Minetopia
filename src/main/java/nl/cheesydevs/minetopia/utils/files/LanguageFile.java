@@ -1,6 +1,6 @@
 package nl.cheesydevs.minetopia.utils.files;
 
-import nl.cheesydevs.minetopia.utils.Chat;
+import nl.cheesydevs.minetopia.api.utils.Chat;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.io.*;

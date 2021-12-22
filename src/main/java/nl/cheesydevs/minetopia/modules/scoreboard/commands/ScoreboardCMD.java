@@ -1,16 +1,13 @@
 package nl.cheesydevs.minetopia.modules.scoreboard.commands;
 
 import nl.cheesydevs.minetopia.modules.scoreboard.utils.Scoreboard;
-import nl.cheesydevs.minetopia.utils.Chat;
 import nl.cheesydevs.minetopia.utils.files.LanguageFile;
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class ScoreboardCMD extends BukkitCommand {
     public ScoreboardCMD(String name) {

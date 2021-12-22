@@ -1,8 +1,8 @@
 package nl.cheesydevs.minetopia.modules.bank.commands;
 
 import nl.cheesydevs.minetopia.Minetopia;
-import nl.cheesydevs.minetopia.modules.bank.utils.RekeningType;
-import nl.cheesydevs.minetopia.utils.Chat;
+import nl.cheesydevs.minetopia.api.utils.bank.RekeningType;
+import nl.cheesydevs.minetopia.api.utils.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;

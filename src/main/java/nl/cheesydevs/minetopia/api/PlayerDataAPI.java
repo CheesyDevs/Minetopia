@@ -1,8 +1,8 @@
 package nl.cheesydevs.minetopia.api;
 
-import nl.cheesydevs.minetopia.utils.Job;
-import nl.cheesydevs.minetopia.utils.PlayerData;
-import nl.cheesydevs.minetopia.utils.Vault;
+import nl.cheesydevs.minetopia.api.utils.Vault;
+import nl.cheesydevs.minetopia.api.utils.playerdata.Job;
+import nl.cheesydevs.minetopia.api.utils.playerdata.PlayerData;
 import nl.cheesydevs.minetopia.utils.files.PlayerDataFiles;
 import org.bukkit.OfflinePlayer;
 

@@ -1,7 +1,7 @@
 package nl.cheesydevs.minetopia.modules.gameitems.utils;
 
 import nl.cheesydevs.minetopia.Minetopia;
-import nl.cheesydevs.minetopia.utils.Chat;
+import nl.cheesydevs.minetopia.api.utils.Chat;
 import nl.cheesydevs.minetopia.utils.files.GameItemsFile;
 import nl.cheesydevs.minetopia.utils.version.nbt.NBT;
 import org.bukkit.Bukkit;

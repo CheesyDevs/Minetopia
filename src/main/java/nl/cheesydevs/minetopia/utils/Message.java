@@ -1,6 +1,7 @@
 package nl.cheesydevs.minetopia.utils;
 
 import nl.cheesydevs.minetopia.Minetopia;
+import nl.cheesydevs.minetopia.api.utils.Chat;
 
 public class Message {
 

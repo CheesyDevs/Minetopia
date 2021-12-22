@@ -3,6 +3,8 @@ package nl.cheesydevs.minetopia;
 import nl.cheesydevs.minetopia.api.API;
 import nl.cheesydevs.minetopia.api.events.OnModuleDisableEvent;
 import nl.cheesydevs.minetopia.api.events.OnModuleEnableEvent;
+import nl.cheesydevs.minetopia.api.utils.Chat;
+import nl.cheesydevs.minetopia.api.utils.Vault;
 import nl.cheesydevs.minetopia.listeners.InventoryClick;
 import nl.cheesydevs.minetopia.modules.MinetopiaModule;
 import nl.cheesydevs.minetopia.modules.Module;

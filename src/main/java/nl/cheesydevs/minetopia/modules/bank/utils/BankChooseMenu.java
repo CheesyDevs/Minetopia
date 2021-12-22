@@ -1,6 +1,8 @@
 package nl.cheesydevs.minetopia.modules.bank.utils;
 
 import nl.cheesydevs.minetopia.Minetopia;
+import nl.cheesydevs.minetopia.api.utils.bank.Rekening;
+import nl.cheesydevs.minetopia.api.utils.bank.RekeningType;
 import nl.cheesydevs.minetopia.utils.files.LanguageFile;
 import nl.cheesydevs.minetopia.utils.interfaces.*;
 import nl.cheesydevs.minetopia.utils.version.nbt.NBT;

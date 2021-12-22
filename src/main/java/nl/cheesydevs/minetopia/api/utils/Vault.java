@@ -1,4 +1,4 @@
-package nl.cheesydevs.minetopia.utils;
+package nl.cheesydevs.minetopia.api.utils;
 
 import net.milkbowl.vault.economy.Economy;
 import nl.cheesydevs.minetopia.Minetopia;

@@ -1,4 +1,4 @@
-package nl.cheesydevs.minetopia.utils;
+package nl.cheesydevs.minetopia.api.utils.playerdata;
 
 import org.bukkit.OfflinePlayer;
 
