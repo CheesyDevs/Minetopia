@@ -46,7 +46,7 @@ public class BankCompanyMenu extends MinetopiaGui {
             }
         }
         if(equals) {
-            e.getWhoClicked().openInventory(new BankRekeningMenu().getInventory());
+            e.getWhoClicked().openInventory(new BankRekeningMenu().getInventory((Player)e.getWhoClicked()));
         }
     }
 
