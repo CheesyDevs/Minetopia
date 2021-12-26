@@ -12,6 +12,7 @@ public class Rekening {
     private String name = Config.getConfig().getString("DefaultRekeningName");
     private OfflinePlayer owner;
     private List<OfflinePlayer> players = new ArrayList<>();
+    private double money;
 
     public void setRekeningType(RekeningType rekeningType) {
         this.rekeningType = rekeningType;
@@ -28,6 +29,9 @@ public class Rekening {
     public void setPlayers(List<OfflinePlayer> players) {
         this.players = players;
     }
+    public void setMoney(double money) {
+        this.money = money;
+    }
 
     public RekeningType getRekeningType() {
         return rekeningType;
@@ -43,5 +47,8 @@ public class Rekening {
     }
     public List<OfflinePlayer> getPlayers() {
         return players;
+    }
+    public double getMoney() {
+        return money;
     }
 }

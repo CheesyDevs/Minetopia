@@ -1,5 +1,6 @@
 package nl.cheesydevs.minetopia.utils.interfaces;
 
+import nl.cheesydevs.minetopia.api.utils.bank.Rekening;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
@@ -23,6 +24,11 @@ public abstract class MinetopiaGui implements Gui {
 
     @Override
     public Inventory getInventory(Player player) {
+        return null;
+    }
+
+    @Override
+    public Inventory getInventory(Player player, Rekening rekening) {
         return null;
     }
 

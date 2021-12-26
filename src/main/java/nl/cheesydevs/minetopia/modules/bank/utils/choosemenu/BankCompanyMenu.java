@@ -38,15 +38,15 @@ public class BankCompanyMenu extends MinetopiaGui {
     public void onInventoryClickEvent(InventoryClickEvent e) {
         if(e.getCurrentItem() == null) return;
         if(e.getCurrentItem().getItemMeta() == null) return;
-        boolean equals = false;
-        for (Rekening rekening : Minetopia.getApi().getBanking().getPlayerRekening((Player)e.getWhoClicked(), RekeningType.COMPANY)) {
-            if(rekening.getName().equals(e.getCurrentItem().getItemMeta().getDisplayName())) {
-                equals = true;
+        Rekening rekening = null;
+        for (Rekening x : Minetopia.getApi().getBanking().getPlayerRekening((Player)e.getWhoClicked(), RekeningType.COMPANY)) {
+            if(x.getName().equals(e.getCurrentItem().getItemMeta().getDisplayName())) {
+                rekening = x;
                 break;
             }
         }
-        if(equals) {
-            e.getWhoClicked().openInventory(new BankRekeningMenu().getInventory((Player)e.getWhoClicked()));
+        if(rekening != null) {
+            e.getWhoClicked().openInventory(new BankRekeningMenu().getInventory((Player)e.getWhoClicked(), rekening));
         }
     }
 
